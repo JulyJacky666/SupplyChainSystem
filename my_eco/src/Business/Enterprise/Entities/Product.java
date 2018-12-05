@@ -17,7 +17,7 @@ public class Product {
     private int ID;
     private String nameString;
 //    private 
-
+    private int salesprice;
     private int price;
     private HashMap<Material, Integer> components;
 //     private HashMap<Material,Integer>  Hash
@@ -28,6 +28,7 @@ public class Product {
         this.price = price;
         this.components = components;
         this.assembletime = assembletime;
+        this.salesprice = this.price;
     }
     
      public Product(){
@@ -68,8 +69,17 @@ public class Product {
         this.assembletime = productType.days;
     }
 
+    public int getSalesprice() {
+        return salesprice;
+    }
+
+    public void setSalesprice(int salesprice) {
+        this.salesprice = salesprice;
+    }
+    
+
     public enum ProductType {
-        Bike("Bike", 120, 2);
+        Bike("Bike", 120, 10);
 
         private String name;
         private int price;

@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Enterprise.Entities.Buyorder;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -14,9 +15,10 @@ import java.util.ArrayList;
  */
 public class SupplierEnterprise extends Enterprise{
     
+    private ArrayList<Buyorder> buyorders;
        public SupplierEnterprise(String name){
-        super(name, EnterpriseType.SalesEnterprise);
-        
+        super(name, EnterpriseType.SupplierEnterprise);
+        buyorders = new ArrayList<>();
     }
        
         @Override

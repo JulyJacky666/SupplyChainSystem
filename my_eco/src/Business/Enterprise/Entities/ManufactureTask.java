@@ -36,7 +36,7 @@ public class ManufactureTask {
         this.completed = false;
         this.hasexperincedDays = 0;
         this.timeremains = Integer.MAX_VALUE;
-        this.createdtimeDate = null;
+        this.createdtimeDate = new Date();
         this.menTakePartIn = new ArrayList<Worker>();
         taskcounts++;
     }

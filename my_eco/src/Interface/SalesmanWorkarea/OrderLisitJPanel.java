@@ -12,6 +12,7 @@ import Business.Enterprise.Entities.Product;
 import Business.Enterprise.Entities.SalesOrder;
 import Business.Organization.SalesOrganization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -97,6 +98,9 @@ public class OrderLisitJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+                userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void populateTable(){
@@ -107,11 +111,11 @@ public class OrderLisitJPanel extends javax.swing.JPanel {
             Object[] row = new Object[3];
             row[0] = salesOrder.getOrderid();
             row[1] = salesOrder.getCustomer();
-            double price = 0.0;
-            for(Product product : salesOrder.getPrice().keySet()){
-                price +=  salesOrder.getPrice().get(product);
+            double totalprivce = 0.0;
+            for(Product product : salesOrder.getItems().keySet()){
+                totalprivce +=  product.getSalesprice() * salesOrder.getItems().get(product);
             }
-            row[2] = price;        
+            row[2] = totalprivce;        
             model.addRow(row);
         }
     }

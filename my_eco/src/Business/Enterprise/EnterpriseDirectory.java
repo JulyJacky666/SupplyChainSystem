@@ -38,6 +38,10 @@ public class EnterpriseDirectory {
             enterprise = new ManufactureEnterprise(name);
             enterpriseList.add(enterprise);
         }
+                   if (type == Enterprise.EnterpriseType.SupplierEnterprise) {
+            enterprise = new SupplierEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;
     }
 

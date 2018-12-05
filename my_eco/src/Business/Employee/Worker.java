@@ -8,6 +8,7 @@ package Business.Employee;
 import Business.Enterprise.Entities.LeaveRequest;
 import Business.Enterprise.Entities.ManufactureTask;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.jar.Attributes;
 
@@ -23,14 +24,18 @@ public class Worker extends Employee {
 //    private HashMap<Integer,>
     private ArrayList<ManufactureTask> taskList;
     private ArrayList<LeaveRequest> leaverequestsList;
-    private int absense = 0;
+    private int absensetime=Integer.MAX_VALUE;
+    private int returnTime = 0;
+    private boolean  isOnVacation;
     private boolean workable;
+    private Date offstartDate;
 
     public Worker(String name) {
-        super(name, 4);
+        super(name, 6);
         taskList = new ArrayList<ManufactureTask>();
         leaverequestsList = new ArrayList<LeaveRequest>();
         workable = true;
+        isOnVacation=false;
     }
 
     public ArrayList<LeaveRequest> getLeaverequestsList() {
@@ -57,17 +62,43 @@ public class Worker extends Employee {
         this.taskList = taskList;
     }
 
-    public int getAbsense() {
-        return absense;
+    public boolean isIsOnVacation() {
+        return isOnVacation;
     }
 
-    public void setAbsense(int absense) {
-        this.absense = absense;
+    public void setIsOnVacation(boolean isOnVacation) {
+        this.isOnVacation = isOnVacation;
+    }
+
+    public Date getOffstartDate() {
+        return offstartDate;
+    }
+
+    public void setOffstartDate(Date offstartDate) {
+        this.offstartDate = offstartDate;
+    }
+    
+
+    public int getReturnTime() {
+        return returnTime;
+    }
+
+    public void setReturnTime(int absense) {
+        this.returnTime = absense;
     }
 
     public void offworkdays(int num) {
-        this.setAbsense(absense + num);
+        this.setReturnTime(returnTime + num);
     }
+
+    public int getAbsensetime() {
+        return absensetime;
+    }
+
+    public void setAbsensetime(int absensetime) {
+        this.absensetime = absensetime;
+    }
+    
 
     @Override
     public String toString() {

@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Employee.CustomerDirectory;
 import Business.Enterprise.Entities.Buyorder;
 import Business.Enterprise.Entities.Factory;
 import Business.Enterprise.Entities.ManufactureTask;
@@ -31,15 +32,16 @@ public class SalesEnterprise extends Enterprise {
 //    private Warehouse warehouse;
   
     private ArrayList<SalesOrder> salesOrdersDirectoryArrayList;
+    private CustomerDirectory customerDirectory;
+   
 
-    private HashMap<Material, Integer> todomaterialHashMap;
+//    private HashMap<Material, Integer> todomaterialHashMap;
 
     public SalesEnterprise(String name) {
         super(name, EnterpriseType.SalesEnterprise);
-        
+        customerDirectory= new CustomerDirectory();        
         salesOrdersDirectoryArrayList = new ArrayList<SalesOrder>();
-        
-        
+             
 //        flushall();
     }
 
@@ -62,6 +64,14 @@ public class SalesEnterprise extends Enterprise {
 
     public void setSalesOrdersDirectoryArrayList(ArrayList<SalesOrder> salesOrdersDirectoryArrayList) {
         this.salesOrdersDirectoryArrayList = salesOrdersDirectoryArrayList;
+    }
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+
+    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
+        this.customerDirectory = customerDirectory;
     }
 
  

@@ -5,17 +5,24 @@
 package Interface.ManagerWorkArea;
 
 import Business.Employee.Employee;
-import Business.Employee.SalesAndBuyDirector;
+import Business.Employee.SalesOrganizationDirector;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.ManufactureEnterprise;
 import Business.Enterprise.SalesEnterprise;
+import Business.Enterprise.SupplierEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Role.BuyerRole;
-import Business.Role.ManufactureDirectorRole;
+import Business.Role.CustomerAssistantRole;
+import Business.Role.CustomerServiceDirectorRole;
+import Business.Role.DeliveryDirectorRole;
+import Business.Role.DriverRole;
+import Business.Role.ProductionDirectorRole;
 import Business.Role.Role;
-import Business.Role.SalesAndBuyDirectorRole;
+import Business.Role.SalesOrganizationDirectorRole;
 import Business.Role.SalesManRole;
+import Business.Role.WarehouserDirectorRole;
+import Business.Role.WarehouserKeeperRole;
 import Business.Role.WorkerRole;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
@@ -61,12 +68,20 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         if (this.enterprise instanceof ManufactureEnterprise) {
             empRoleJComboBox.addItem("Worker");
-            empRoleJComboBox.addItem("Manufacture Director");
+            empRoleJComboBox.addItem("Production Director");
             empRoleJComboBox.addItem("Buyer");
         }
         if (this.enterprise instanceof SalesEnterprise) {
-            empRoleJComboBox.addItem("Sales&Buy Director");
-            empRoleJComboBox.addItem("SalesMan");
+            empRoleJComboBox.addItem("Sales Organization Director");
+            empRoleJComboBox.addItem("Sales Man");
+            empRoleJComboBox.addItem("Customer Assistant");
+            empRoleJComboBox.addItem("Customer Service Director");
+        }
+        if (this.enterprise instanceof SupplierEnterprise) {
+            empRoleJComboBox.addItem("Driver");
+            empRoleJComboBox.addItem("Delivery Director");
+            empRoleJComboBox.addItem("Warehouse Director");
+            empRoleJComboBox.addItem("Warehouse Keeper");
         }
 
     }
@@ -95,7 +110,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 model.addRow(row);
             }
         }
-
 
     }
 
@@ -215,26 +229,52 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         int number = 0;
         Role role = null;
         switch (hardrole) {
-            case "Manufacture Director":
-                number = 5;
-                role = new ManufactureDirectorRole();
-                break;
-            case "Sales&Buy Director":
-                number = 6;
-                role = new SalesAndBuyDirectorRole();
-                break;
-            case "Worker":
-                number = 4;
-                role = new WorkerRole();
-                break;
-
-            case "SalesMan":
+            case "Customer Assistant":
                 number = 2;
+                role = new CustomerAssistantRole();
+                break;
+            case "Customer Service Director":
+                number = 3;
+                role = new CustomerServiceDirectorRole();
+                break;
+            case "Sales Man":
+                number = 4;
                 role = new SalesManRole();
                 break;
-            case "buyer":
-                number = 3;
-//                role = new BuyerRole();
+            case "Sales Organization Director":
+                number = 5;
+                role = new SalesOrganizationDirectorRole();
+                break;
+
+            case "Worker":
+                number = 6;
+                role = new WorkerRole();
+                break;
+            case "Production Director":
+                number = 7;
+                role = new ProductionDirectorRole();
+                break;
+
+            case "Buyer":
+                number = 8;
+                role = null;
+                break;
+            case "Warehouse Keeper":
+                number = 10;
+                role = new WarehouserKeeperRole();
+                break;
+            case "Warehouse Director":
+                number = 11;
+                role = new WarehouserDirectorRole();
+                break;
+
+            case "Driver":
+                number = 12;
+                role = new DriverRole();
+                break;
+            case "Delivery Director":
+                number = 13;
+                role = new DeliveryDirectorRole();
                 break;
 
         }
@@ -242,7 +282,14 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
         enterprise.getTopemployeeDirectory().getEmployeeList().add(employee);
         enterprise.getUserAccountDirectory().getUserAccountList().add(userAccount);
-//        System.out.println(username +password +employee);
+        System.out.println(organization.getName()+"create" + employee.getName() +employee.getHardRole());
+//        System.out.println(this.enterprise.getOrganizationDirectory());
+        System.out.println("______");
+        for(Organization organization1:this.enterprise.getOrganizationDirectory().getOrganizationList()){
+            for(UserAccount userAccount1:organization1.getUserAccountDirectory().getUserAccountList()){
+                System.out.println(this.enterprise.getName()+organization.getName()+userAccount1.getUsername() +"jikewei");
+            }
+        }
         populateTable();
 
     }//GEN-LAST:event_addJButtonActionPerformed

@@ -6,6 +6,7 @@
 package Business.Organization;
 
 import Business.Enterprise.Entities.Factory;
+import Business.Role.CustomerServiceDirectorRole;
 import Business.Role.ManagerRole;
 import Business.Role.Role;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class CustomerServiceOrganization extends Organization{
           @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new ManagerRole());
+        roles.add(new CustomerServiceDirectorRole());
         return roles;
     }
 }

@@ -6,14 +6,20 @@
 package Business;
 
 import Business.Area.Area;
+import Business.Enterprise.Entities.ManufactureTask;
 import Business.Enterprise.ManufactureEnterprise;
 import Business.Enterprise.SalesEnterprise;
 import Business.Enterprise.SupplierEnterprise;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+import javax.swing.Timer;
 
 /**
  *
@@ -53,6 +59,41 @@ public class EcoSystem extends Organization {
         allManufactureEnterprises = new HashMap<ManufactureEnterprise,String>();
         allSalesEnterprises = new HashMap<SalesEnterprise,String>();
         allSupplierEnterprises = new HashMap<SupplierEnterprise,String>();
+        flushall();
+    }
+    
+    
+        public void flushall() {
+        //flush the system every 10 seconds
+        Timer timer = new Timer(10000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flushManufacturetask();
+                System.out.println("20s");
+            }
+        });
+        timer.setRepeats(true);
+        timer.setCoalesce(true);
+        timer.setInitialDelay(0);
+        timer.start();
+
+    }
+
+    public void flushManufacturetask() {
+        
+    for(ManufactureEnterprise manufactureEnterprise:this.allManufactureEnterprises.keySet()){
+                for (ManufactureTask task : manufactureEnterprise.getManufactureTasksdirectory()) {
+            if (task.getCompleted() == false && task.getTimeremains() > 0) {
+                long diff = new Date().getTime() - task.getCreatedtimeDate().getTime();
+                if (TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS) == 1) {
+                    task.setHasexperincedDays(task.getHasexperincedDays() + 1);
+                    task.calculateTimeRemains();
+                }
+//            System.out.println("seconds: " + TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS));
+            }
+        }
+    }
+
     }
 
 //    public ArrayList<Area> getAreaList() {

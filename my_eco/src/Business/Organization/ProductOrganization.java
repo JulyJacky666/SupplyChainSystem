@@ -9,6 +9,7 @@ import Business.Enterprise.Entities.Factory;
 import Business.Enterprise.Entities.ManufactureTask;
 import Business.Enterprise.Entities.WorkLine;
 import Business.Role.ManagerRole;
+import Business.Role.ProductionDirectorRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class ProductOrganization extends Organization {
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new ManagerRole());
+        roles.add(new ProductionDirectorRole());
         return roles;
     }
 

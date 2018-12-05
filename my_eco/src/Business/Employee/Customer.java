@@ -12,15 +12,18 @@ import Business.Enterprise.Entities.SalesOrderDirectory;
  * @author amber
  */
 public class Customer {
+
     private String name;
+    private static int counts = 1;
     private int id;
-    private SalesOrderDirectory salesOrderDictory;
+    private String address;
+    private SalesOrderDirectory salesOrderDirectory;
 
     public Customer() {
-        this.salesOrderDictory = new SalesOrderDirectory();
+        this.id = counts;
+        this.salesOrderDirectory = new SalesOrderDirectory();
+        counts += 1;
     }
-    
-    
 
     public String getName() {
         return name;
@@ -28,6 +31,14 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getId() {
@@ -39,16 +50,16 @@ public class Customer {
     }
 
     public SalesOrderDirectory getSalesOrderDictory() {
-        return salesOrderDictory;
+        return salesOrderDirectory;
     }
 
     public void setSalesOrderDictory(SalesOrderDirectory salesOrderDictory) {
-        this.salesOrderDictory = salesOrderDictory;
+        this.salesOrderDirectory = salesOrderDictory;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
     }
-    
+
 }

@@ -33,7 +33,7 @@ public class ManufactureEnterprise extends Enterprise {
     private HashMap<Material, Integer> todomaterialHashMap;
 
     public ManufactureEnterprise(String name) {
-        super(name, EnterpriseType.SalesEnterprise);
+        super(name, EnterpriseType.ManufactureEnterprise);
         this.factory = new Factory();
         receivedOrders = new ArrayList<SalesOrder> ();
         todomaterialHashMap = new HashMap<Material, Integer>();
@@ -93,7 +93,7 @@ public class ManufactureEnterprise extends Enterprise {
 
     public void flushall() {
         //flush the system every 20 seconds
-        Timer timer = new Timer(20000, new ActionListener() {
+        Timer timer = new Timer(10000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 flushManufacturetask();

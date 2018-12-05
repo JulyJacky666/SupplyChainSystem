@@ -18,7 +18,7 @@ public class Salesman extends Employee {
      private SalesOrderDirectory salesOrderDictory;
     private CustomerDirectory customerDirectory;
     public Salesman(String name){
-        super(name, 2);
+        super(name, 4);
         this.salesOrderDictory = new SalesOrderDirectory();
         this.customerDirectory = new CustomerDirectory();
     }

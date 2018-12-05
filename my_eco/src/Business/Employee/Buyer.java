@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Buyer extends Employee{
     private ArrayList<Buyorder> buyerorders ;
     public  Buyer(String name){
-        super(name, 3);
+        super(name, 8);
         this.buyerorders = new ArrayList<Buyorder>();
     }
 
@@ -27,9 +27,5 @@ public class Buyer extends Employee{
         this.buyerorders = buyerorders;
     }
     
-    
-    
-    
-    
-   
+      
 }

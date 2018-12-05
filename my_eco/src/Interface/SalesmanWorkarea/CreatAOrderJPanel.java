@@ -5,6 +5,7 @@
  */
 package Interface.SalesmanWorkarea;
 
+import Business.Area.Area;
 import Business.Employee.Customer;
 import Business.Employee.Salesman;
 import Business.Enterprise.Enterprise;
@@ -18,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 import Business.Enterprise.Entities.SalesOrder;
 import Business.Enterprise.SalesEnterprise;
 import java.awt.CardLayout;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,23 +33,36 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private SalesOrganization organization;
-    private Enterprise enterprise;
+    private SalesEnterprise salesEnterprise;
     private UserAccount userAccount;
-    private SalesOrder salesOrder;
-    public CreatAOrderJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, Enterprise enterprise) {
-       initComponents();
-       this.userProcessContainer = userProcessContainer;
-       this.organization = organization;
-       this.enterprise = enterprise;
-       this.userAccount = account;
-       this.salesOrder = new SalesOrder();
-       CustomerjComboBox.removeAllItems();
-       
-       populateTable();
-       for(Customer customer : ((Salesman)userAccount.getEmployee()).getCustomerDirectory().getCustomerDict()) {
-           CustomerjComboBox.addItem(customer);
-       }
-       
+    private ArrayList<Area> arealist;
+    private HashMap<Product, Integer> itemsHashMap;
+//    private SalesOrder salesOrder;
+
+    public CreatAOrderJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, Enterprise enterprise, ArrayList<Area> arealist) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.salesEnterprise = (SalesEnterprise) enterprise;
+        this.userAccount = account;
+        this.arealist = arealist;
+        this.itemsHashMap = new HashMap<Product, Integer>();
+//        this.salesOrder = new SalesOrder();
+
+        populateTable();
+        populatebox();
+        
+    }
+
+    public void populatebox() {
+        CustomerjComboBox.removeAllItems();
+        for (Customer customer : this.salesEnterprise.getCustomerDirectory().getCustomerDict()) {
+            CustomerjComboBox.addItem(customer);
+        }
+        AreajComboBox1.removeAllItems();
+        for (Area area : this.arealist) {
+            AreajComboBox1.addItem(area);
+        }
     }
 
     /**
@@ -61,16 +77,12 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         itemjTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         PricejTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         productjSpinner = new javax.swing.JSpinner();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         productjTable = new javax.swing.JTable();
@@ -78,6 +90,9 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         CustomerjComboBox = new javax.swing.JComboBox();
         jButton6 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        AreajComboBox1 = new javax.swing.JComboBox();
 
         itemjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,28 +106,17 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Create A Order");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setText("Sales Price");
+
+        PricejTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                PricejTextFieldActionPerformed(evt);
             }
         });
-
-        jLabel4.setText("Product Name");
-
-        jButton1.setText("Search");
-
-        jLabel5.setText("Sales Price");
 
         jLabel6.setText("Quantity");
 
-        jButton2.setText("View Details");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Add to order");
+        jButton3.setText("Add item");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -152,29 +156,23 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setText("Customer Name :");
+
+        jLabel4.setText("Delivery Destination:");
+
+        AreajComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        AreajComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AreajComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(PricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(productjSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(179, 179, 179)
-                                .addComponent(jButton2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel1)
@@ -184,32 +182,45 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel2))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton1)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(CustomerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jButton6)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(115, 115, 115)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CustomerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(AreajComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(PricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(30, 30, 30)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(productjSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(113, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(96, 96, 96)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(134, Short.MAX_VALUE)))
+                    .addContainerGap(224, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,15 +230,13 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CustomerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(CustomerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
-                .addComponent(jButton2)
-                .addGap(80, 80, 80)
+                    .addComponent(AreajComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(135, 135, 135)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(PricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,85 +245,97 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(91, 91, 91)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(255, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(320, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Customer c = (Customer)CustomerjComboBox.getSelectedItem();
-        salesOrder.setCustomer(c);
-        SalesOrder sa=((Salesman)userAccount.getEmployee()).getSalesOrderDictory().addSalesOrder();
-        sa = salesOrder;
-        sa = c.getSalesOrderDictory().addSalesOrder();
-        sa = salesOrder;
-        ((SalesEnterprise)enterprise).getSalesOrdersDirectoryArrayList().add(salesOrder);
+        Customer customer = (Customer) CustomerjComboBox.getSelectedItem();
+//        salesOrder.setCustomer(customer);
+        SalesOrder salesorder = ((Salesman) userAccount.getEmployee()).getSalesOrderDictory().addSalesOrder();
+        salesorder.setCustomer(customer);
+        salesorder.setDestinationState(((Area)AreajComboBox1.getSelectedItem()).getName());
+        for (Product product : this.itemsHashMap.keySet()) {
+            salesorder.getItems().put(product, this.itemsHashMap.get(product));
+        }
+        this.itemsHashMap.clear();
+       salesEnterprise.getSalesOrdersDirectoryArrayList().add(salesorder);
+        
+        JOptionPane.showMessageDialog(null, "Create sales order successfully !");
+        populateTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void CustomerjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerjComboBoxActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_CustomerjComboBoxActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         // TODO add your handling code here:
-        int index = productjTable.getSelectedRow();
-        Product p = (Product) productjTable.getValueAt(index, 1);
+        try {
+                    int index = productjTable.getSelectedRow();
+        Product product = (Product) productjTable.getValueAt(index, 1);
+        product.setSalesprice(Integer.parseInt(PricejTextField.getText()));
         System.out.println(productjSpinner.getValue().toString());
-        salesOrder.getItems().put(p, Integer.parseInt(productjSpinner.getValue().toString()));
-        salesOrder.getPrice().put(p, Double.valueOf(PricejTextField.getText()));
+        this.itemsHashMap.put(product, Integer.parseInt(productjSpinner.getValue().toString()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please select a product and input the price and anmouts");
+            return;
+        }
+
         
         DefaultTableModel model = (DefaultTableModel) itemjTable.getModel();
-        
-        model.setRowCount(0);
-        for (Product pr : salesOrder.getItems().keySet()){
+
+//        model.setRowCount(0);
+        for (Product product2 : itemsHashMap.keySet()) {
             Object[] row = new Object[4];
-            row[0] = pr.getID();
-            row[1] = pr.getNameString();
-            row[2] = salesOrder.getItems().get(pr);
-            row[3] = salesOrder.getPrice().get(pr);
+            row[0] = product2.getID();
+            row[1] = product2.getNameString();
+            row[2] = itemsHashMap.get(product2);
+            row[3] = itemsHashMap.get(product2) * product2.getSalesprice();
             model.addRow(row);
         }
-        
-        PricejTextField.setText("");
+
+//        PricejTextField.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    public void populateTable(){
+    private void AreajComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreajComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AreajComboBox1ActionPerformed
+
+    private void PricejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PricejTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PricejTextFieldActionPerformed
+    
+    public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) productjTable.getModel();
         
         model.setRowCount(0);
-        if(enterprise.getProductDictory().getProductsDict().isEmpty()){
-                    MaterialDirectory materialDirectory = new MaterialDirectory();
-        Product product  = new Product(Product.ProductType.Bike, materialDirectory);
-        enterprise.getProductDictory().getProductsDict().add(product);
+        if (salesEnterprise.getProductDictory().getProductsDict().isEmpty()) {
+            MaterialDirectory materialDirectory = new MaterialDirectory();
+            Product product = new Product(Product.ProductType.Bike, materialDirectory);
+            salesEnterprise.getProductDictory().getProductsDict().add(product);
         }
-        for (Product p : enterprise.getProductDictory().getProductsDict()){
+        for (Product p : salesEnterprise.getProductDictory().getProductsDict()) {
             Object[] row = new Object[3];
             row[0] = p.getID();
             row[1] = p;
@@ -322,15 +343,23 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
         
-        
+        DefaultTableModel model2 = (DefaultTableModel) itemjTable.getModel();
+        model2.setRowCount(0);
+        for (Product product2 : itemsHashMap.keySet()) {
+            Object[] row = new Object[4];
+            row[0] = product2.getID();
+            row[1] = product2.getNameString();
+            row[2] = itemsHashMap.get(product2);
+            row[3] = itemsHashMap.get(product2) * product2.getSalesprice();
+            model2.addRow(row);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox AreajComboBox1;
     private javax.swing.JComboBox CustomerjComboBox;
     private javax.swing.JTextField PricejTextField;
     private javax.swing.JTable itemjTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -341,9 +370,9 @@ public class CreatAOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JSpinner productjSpinner;
     private javax.swing.JTable productjTable;
     // End of variables declaration//GEN-END:variables

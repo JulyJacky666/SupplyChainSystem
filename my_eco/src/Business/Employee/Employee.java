@@ -11,7 +11,7 @@ import Business.Role.Role;
  *
  * @author maibenben
  */
-public  abstract class Employee {
+public abstract class Employee {
 
     private String name;
     private int id;
@@ -53,50 +53,70 @@ public  abstract class Employee {
     public void setRolenumber(int rolenumber) {
         this.rolenumber = rolenumber;
     }
-    
-    public String getHardRole(){
-        int rolenumber= this.getRolenumber();
-        String hardroleString="";
-        switch(rolenumber){
-            case 4:
-                hardroleString="Worker";
-                break;
-                
-            case 5:
-                hardroleString="Manu. Director";
-                break;
-                
-            case 6:
-                hardroleString="Sales&Buy Director";
+
+    public String getHardRole() {
+        int rolenumber = this.getRolenumber();
+        String hardroleString = "";
+        switch (rolenumber) {
+            case 2:
+                hardroleString = "Customer Assistant";
                 break;
             case 3:
-                hardroleString="Buyer";
+                hardroleString = "Customer Service Director";
                 break;
-                
-            case 2:
-                hardroleString="Salesman";
+            case 4:
+                hardroleString = "Sales Man";
                 break;
+            case 5:
+                hardroleString = "Sales Organization Director";
+                break;
+            case 6:
+                hardroleString = "Worker";
+                break;
+            case 7:
+                hardroleString = "Production Director";
+                break;
+            case 8:
+                hardroleString = "Buyer";
+                break;
+
+            case 10:
+                hardroleString = "Warehouse Keeper";
+                break;
+            case 11:
+                hardroleString = "Warehouse Director";
+                break;
+
+            case 12:
+                hardroleString = "Driver";
+                break;
+            case 13:
+                hardroleString = "Delivery Director";
+                break;
+
         }
         return hardroleString;
     }
-    
-    
-        public String getHardOrg(){
-        int rolenumber= this.getRolenumber();
-        String hardorgString="";
-        if(rolenumber ==4 || rolenumber ==5){
-            hardorgString="Manufacture";
-        }else{
-             hardorgString="Buys&Sales";
+
+    public String getHardOrg() {
+        int rolenumber = this.getRolenumber();
+        String hardorgString = "";
+        if (rolenumber == 2 || rolenumber == 3) {
+            hardorgString = "Customer Service";
         }
-//        switch(rolenumber){
-//            case 4  | 5:
-//                hardorgString="Manufacture";
-//                break;
-//            case 3 & 2:
-//                hardorgString="Buys&Sales";
-//                break;
-//        }
+        if (rolenumber == 4 || rolenumber == 5) {
+            hardorgString = "Sales Organization";
+        }
+        if (rolenumber == 6 || rolenumber == 7) {
+            hardorgString = "Production Organization";
+        }
+        if (rolenumber == 8) {
+            hardorgString = "Purchase Organization";
+        }        if (rolenumber == 10||rolenumber == 11) {
+            hardorgString = "Warehouse Organization";
+        }if (rolenumber == 12||rolenumber == 13) {
+            hardorgString = "Delivery Organization";
+        }
         return hardorgString;
     }
 

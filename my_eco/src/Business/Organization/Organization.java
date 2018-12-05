@@ -5,6 +5,7 @@
  */
 package Business.Organization;
 
+import Business.Employee.DeliveryDirector;
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
@@ -26,8 +27,11 @@ public  abstract class Organization {
     
     public enum Type{
 //        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization");
-        ProductionOrganization("Manufacture Organization"),PurchaseOrganization("Purchase Organization"),CustomerServiceOrganization("Customer Organization"),SalesOrganization("Sales Organization"),Supply("Supply");
-//            ManuSalesSupply("Manufacture"),TBD("TBD"),Supply("Supply");
+//        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization");
+        ProductionOrganization("Manufacture Organization"),PurchaseOrganization("Purchase Organization"),
+        CustomerServiceOrganization("Customer Organization"),SalesOrganization("Sales Organization"),WarehouseOrganization("Warehouse Organization"),
+        DeliveryOrganization("Delivery Organization");
+//            ManuSalesSupply("Manufacture"),TBD("TBD"),WarehouseOrganization("WarehouseOrganization");
         private String value;
         private Type(String value) {
             this.value = value;

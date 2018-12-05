@@ -5,11 +5,13 @@
  */
 package Interface.SalesmanWorkarea;
 
+import Business.Area.Area;
 import Business.Enterprise.Enterprise;
 import javax.swing.JPanel;
 import Business.Organization.SalesOrganization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 
 
 /**
@@ -26,14 +28,17 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
     private SalesOrganization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
+    private ArrayList<Area> areaarrayList;
     
-    public SalesmanWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, Enterprise enterprise) {
+    public SalesmanWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, Enterprise enterprise, ArrayList<Area> areaarrayList) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
+        this.areaarrayList = areaarrayList;
         valueLabel.setText(account.getUsername());
+        
     }
 
     /**
@@ -74,16 +79,16 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(valueLabel)
                         .addGap(228, 228, 228)))
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +101,7 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,7 +109,7 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("ManagementCustomers", 
-                new CreatAOrderJPanel(userProcessContainer,userAccount,organization,enterprise));
+                new CreatAOrderJPanel(userProcessContainer,userAccount,organization,enterprise,areaarrayList));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -34,6 +34,18 @@ public class OrganizationDirectory {
             organization = new SalesOrganization();
             organization.setName(name);
             organizationList.add(organization);
+        }        if (type.getValue().equals(Organization.Type.WarehouseOrganization.getValue())){
+            organization = new WarehouseOrganization();
+            organization.setName(name);
+            organizationList.add(organization);
+        } if (type.getValue().equals(Organization.Type.CustomerServiceOrganization.getValue())){
+            organization = new CustomerServiceOrganization();
+            organization.setName(name);
+            organizationList.add(organization);
+        }if (type.getValue().equals(Organization.Type.DeliveryOrganization.getValue())){
+            organization = new DeliveryOrganization();
+            organization.setName(name);
+            organizationList.add(organization);
         }
         
 //        else if (type.getValue().equals(Organization.Type.Lab.getValue())){

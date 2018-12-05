@@ -12,28 +12,28 @@ import java.util.ArrayList;
  * @author amber
  */
 public class CustomerDirectory {
-    private ArrayList<Customer> CustomerDict;
+    private ArrayList<Customer> customers;
     
     public CustomerDirectory() {
-        CustomerDict = new ArrayList<Customer>();
+        customers = new ArrayList<Customer>();
     }
 
     public ArrayList<Customer> getCustomerDict() {
-        return CustomerDict;
+        return customers;
     }
     
     public Customer addCustomer() {
         Customer s = new Customer();
-        CustomerDict.add(s);
+        customers.add(s);
         return s;
     }
     
     public void removeCustomer(Customer s) {
-        CustomerDict.remove(s);
+        customers.remove(s);
     }
     
     public Customer searchAirliners(String keyWord) {
-        for(Customer s : CustomerDict) {
+        for(Customer s : customers) {
             if(keyWord.equals(s.getName())) {
                 return s;
             }

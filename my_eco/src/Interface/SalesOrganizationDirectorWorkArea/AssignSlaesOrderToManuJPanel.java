@@ -11,6 +11,7 @@ import Business.Employee.Worker;
 import Business.Enterprise.Entities.ManufactureTask;
 import Business.Enterprise.Entities.SalesOrder;
 import Business.Enterprise.ManufactureEnterprise;
+import Business.Enterprise.SalesEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.ProductOrganization;
 import Business.Organization.SalesOrganization;
@@ -28,67 +29,87 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AssignSlaesOrderToManuJPanel
      */
-    private SalesOrganization salesOrganization;
+//    private SalesOrganization salesOrganization;
+    private SalesEnterprise salesEnterprise;
     private JPanel userProcessContainer;
     private HashMap<ManufactureEnterprise, String> allManufactureEnterprises;
 
-    public AssignSlaesOrderToManuJPanel(JPanel userProcessContainer, SalesOrganization salesOrganization, HashMap<ManufactureEnterprise, String> allManufactureEnterprises) {
+    public AssignSlaesOrderToManuJPanel(JPanel userProcessContainer, SalesEnterprise salesEnterprise, HashMap<ManufactureEnterprise, String> allManufactureEnterprises) {
         this.userProcessContainer = userProcessContainer;
-        this.salesOrganization = salesOrganization;
+//        this.salesOrganization = salesOrganization;
+        this.salesEnterprise = salesEnterprise;
         this.allManufactureEnterprises = allManufactureEnterprises;
         initComponents();
+//          System.out.println(this.salesOrganization.getName()+111);
         populateorderstable();
         populatemanus();
+
     }
 
     public void populateorderstable() {
         DefaultTableModel model = (DefaultTableModel) ordersjTable1.getModel();
         model.setRowCount(0);
-        for (Employee employee : this.salesOrganization.getEmployeeDirectory().getEmployeeList()) {
-            if (employee.getRolenumber() == 2) {
-                for (SalesOrder salesOrder : ((Salesman) employee).getSalesOrderDictory().getSalesorders()) {
-                    if (salesOrder.isIsdeliveredtomanufac() == false) {
-                        Object[] row = new Object[5];
-                        row[0] = salesOrder;
-                        row[1] = String.valueOf(salesOrder.isIsEmergency());
-                        row[2] = salesOrder.getCustomer().getName();
-                        row[3] = salesOrder.getDestinationState();
-                        row[4] = salesOrder.getItems().size();
-                        
-                        model.addRow(row);
-                    }
-                }
-                
+        for (SalesOrder salesOrder : this.salesEnterprise.getSalesOrdersDirectoryArrayList()) {
+            if (salesOrder.isIsdeliveredtomanufac() == false) {
+                Object[] row = new Object[5];
+                row[0] = salesOrder;
+                row[1] = String.valueOf(salesOrder.isIsEmergency());
+                row[2] = salesOrder.getCustomer().getName();
+                row[3] = salesOrder.getDestinationState();
+                row[4] = salesOrder.getItems().size();
+
+                model.addRow(row);
             }
+//        for (Organization organization : this.salesEnterprise.getOrganizationDirectory().getOrganizationList()) {
+//            for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+//                if (employee.getRolenumber() == 2) {
+//                    for (SalesOrder salesOrder : ((Salesman) employee).getSalesOrderDictory().getSalesorders()) {
+//                        if (salesOrder.isIsdeliveredtomanufac() == false) {
+//                            Object[] row = new Object[5];
+//                            row[0] = salesOrder;
+//                            row[1] = String.valueOf(salesOrder.isIsEmergency());
+//                            row[2] = salesOrder.getCustomer().getName();
+//                            row[3] = salesOrder.getDestinationState();
+//                            row[4] = salesOrder.getItems().size();
+//
+//                            model.addRow(row);
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
+
         }
+
     }
-    
-    public void populatemanus(){
-         DefaultTableModel model = (DefaultTableModel) manusjTable2.getModel();
+
+    public void populatemanus() {
+        DefaultTableModel model = (DefaultTableModel) manusjTable2.getModel();
         model.setRowCount(0);
-        for(ManufactureEnterprise manufactureEnterprise:this.allManufactureEnterprises.keySet()){
+        for (ManufactureEnterprise manufactureEnterprise : this.allManufactureEnterprises.keySet()) {
             Object[] row = new Object[4];
-            row[0] =this.allManufactureEnterprises.get(manufactureEnterprise);
+            row[0] = this.allManufactureEnterprises.get(manufactureEnterprise);
             row[1] = manufactureEnterprise;
-            int workablenumer=0;
-            for(Organization organization: manufactureEnterprise.getOrganizationDirectory().getOrganizationList()){
-                if(organization instanceof  ProductOrganization){
-                    for(Worker worker:organization.getEmployeeDirectory().getworkerArrayList()){
-                        if(worker.isWorkable()==true){
-                            workablenumer +=1;
+            int workablenumer = 0;
+            for (Organization organization : manufactureEnterprise.getOrganizationDirectory().getOrganizationList()) {
+                if (organization instanceof ProductOrganization) {
+                    for (Worker worker : organization.getEmployeeDirectory().getworkerArrayList()) {
+                        if (worker.isWorkable() == true) {
+                            workablenumer += 1;
                         }
                     }
                 }
             }
             row[2] = workablenumer;
             int taskondoing = 0;
-            for(ManufactureTask manufacturetask:manufactureEnterprise.getManufactureTasksdirectory()){
-                if(manufacturetask.getExcuted()==true && manufacturetask.getCompleted()==false){
-                    taskondoing +=1;
+            for (ManufactureTask manufacturetask : manufactureEnterprise.getManufactureTasksdirectory()) {
+                if (manufacturetask.getExcuted() == true && manufacturetask.getCompleted() == false) {
+                    taskondoing += 1;
                 }
             }
             row[3] = taskondoing;
-            
+
             model.addRow(row);
         }
     }
@@ -187,9 +208,9 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int orderindex = ordersjTable1.getSelectedRow();
         int manusindex = manusjTable2.getSelectedRow();
-        
-        SalesOrder order = (SalesOrder)ordersjTable1.getValueAt(orderindex, 0);
-        ManufactureEnterprise enterprise =(ManufactureEnterprise) manusjTable2.getValueAt(manusindex, 1);
+
+        SalesOrder order = (SalesOrder) ordersjTable1.getValueAt(orderindex, 0);
+        ManufactureEnterprise enterprise = (ManufactureEnterprise) manusjTable2.getValueAt(manusindex, 1);
         enterprise.getReceivedOrders().add(order);
         order.setIsdeliveredtomanufac(true);
         JOptionPane.showMessageDialog(null, "Successfully deliver order to Manufactures");

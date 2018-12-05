@@ -12,7 +12,6 @@ import Business.Enterprise.SalesEnterprise;
 import Business.Enterprise.SupplierEnterprise;
 import java.awt.CardLayout;
 import java.awt.Component;
-import java.util.function.Supplier;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -109,7 +108,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
-        jLabel1.setText("Network");
+        jLabel1.setText("Location:");
 
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -150,8 +149,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(enterpriseTypeJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(39, 39, 39)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -196,9 +194,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
         }
-
+        
         String name = nameJTextField.getText();
-
+        
+        System.out.println(type);
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
         if(enterprise instanceof  ManufactureEnterprise){
             system.getAllManufactureEnterprises().put((ManufactureEnterprise)enterprise, network.getName());

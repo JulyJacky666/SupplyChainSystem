@@ -8,6 +8,7 @@ package Interface.SalesOrganizationDirectorWorkArea;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.ManufactureEnterprise;
 import Business.Enterprise.SalesEnterprise;
+import Business.Organization.Organization;
 import Business.Organization.ProductOrganization;
 import Business.Organization.SalesOrganization;
 import java.awt.CardLayout;
@@ -25,17 +26,17 @@ public class SalesEnterpriseDirectorWorkAreaJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private SalesEnterprise enterprise;
-    private SalesOrganization salesAndBuysOrganization;
+//    private SalesOrganization salesorganization;
     private HashMap<ManufactureEnterprise,String> allManufactureEnterprises;
 
-    public SalesEnterpriseDirectorWorkAreaJPanel(JPanel userProcessContainer, SalesOrganization salesAndBuysOrganization, SalesEnterprise enterprise, HashMap<ManufactureEnterprise,String> allManufactureEnterprises) {
+    public SalesEnterpriseDirectorWorkAreaJPanel(JPanel userProcessContainer, SalesEnterprise enterprise, HashMap<ManufactureEnterprise,String> allManufactureEnterprises) {
 
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.salesAndBuysOrganization = salesAndBuysOrganization;
+        this.userProcessContainer = userProcessContainer;        
         this.enterprise = enterprise;
         this.allManufactureEnterprises= allManufactureEnterprises;
         System.out.println(enterprise.getName());
+//        System.out.println("org:"+organization.getName());
 //        System.out.println(this.salesAndBuysOrganization.getName());
     }
 
@@ -63,7 +64,7 @@ public class SalesEnterpriseDirectorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        AssignSlaesOrderToManuJPanel assignSlaesOrderToManuJPanel = new AssignSlaesOrderToManuJPanel(userProcessContainer, salesAndBuysOrganization, allManufactureEnterprises);
+        AssignSlaesOrderToManuJPanel assignSlaesOrderToManuJPanel = new AssignSlaesOrderToManuJPanel(userProcessContainer, enterprise,allManufactureEnterprises);
                 userProcessContainer.add("manageOrganizationJPanel", assignSlaesOrderToManuJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

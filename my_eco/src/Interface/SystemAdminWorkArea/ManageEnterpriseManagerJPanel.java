@@ -255,6 +255,7 @@ public class ManageEnterpriseManagerJPanel extends javax.swing.JPanel {
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, 0);
 
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ManagerRole());
+        System.out.println(enterprise.getName() + "create manager"+account.getUsername() );
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed

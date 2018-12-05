@@ -30,22 +30,46 @@ public class EmployeeDirectory {
                 employee = new Manager(name);
                 break;
             case 2:
-                employee = new Salesman(name);
+                employee = new CustomerAssisatant(name);
                 break;
             case 3:
-                employee = new Buyer(name);
+                employee = new CustomerServiceDirector(name);
                 break;
 
             case 4:
-                employee = new Worker(name);
+                employee = new Salesman(name);
                 break;
 
             case 5:
-                employee = new ManufactureDirector(name);
+                employee = new SalesOrganizationDirector(name);
                 break;
             case 6:
-                employee  = new SalesAndBuyDirector(name);
+                employee = new Worker(name);
                 break;
+
+            case 7:
+                employee = new ProductDirector(name);
+                break;
+
+            case 8:
+                employee = new Buyer(name);
+                break;
+            
+            case 10:
+                employee = new Warehousekeeper(name);
+                break;
+            
+            case 11:
+                employee = new WarehouseDirector(name);
+                break;
+                
+            case 12:
+                employee = new Driver(name);
+                break;
+               
+            case 13:
+                employee = new DeliveryDirector(name);
+                break;   
 
         }
 

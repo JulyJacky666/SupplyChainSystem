@@ -7,6 +7,7 @@ package Interface.ManagerWorkArea;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.ManufactureEnterprise;
 import Business.Enterprise.SalesEnterprise;
+import Business.Enterprise.SupplierEnterprise;
 import Business.Organization.ProductOrganization;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
@@ -47,6 +48,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         if(this.enterprise instanceof  SalesEnterprise){
             organizationJComboBox.addItem(Organization.Type.CustomerServiceOrganization);
             organizationJComboBox.addItem(Organization.Type.SalesOrganization);
+        }
+                if(this.enterprise instanceof  SupplierEnterprise){
+            organizationJComboBox.addItem(Organization.Type.WarehouseOrganization);
+            organizationJComboBox.addItem(Organization.Type.DeliveryOrganization);
         }
 //        if (this.enterprise instanceof )
 //        for (Type type : Organization.Type.values()) {
@@ -171,8 +176,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         Type type = (Type) organizationJComboBox.getSelectedItem();
         String name = namejTextField1.getText();
-        this.enterprise.getOrganizationDirectory().createOrganization(type,name);
-//        System.out.print("11"+type.getValue() + name);
+        Organization organization=this.enterprise.getOrganizationDirectory().createOrganization(type,name);
+        System.out.print(organization.getName()+"create successfully");
         populateTable();
     }//GEN-LAST:event_addJButtonActionPerformed
 

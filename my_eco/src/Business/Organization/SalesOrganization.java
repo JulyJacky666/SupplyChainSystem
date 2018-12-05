@@ -9,6 +9,7 @@ import Business.Enterprise.Entities.Factory;
 import Business.Enterprise.Entities.Material;
 import Business.Role.ManagerRole;
 import Business.Role.Role;
+import Business.Role.SalesOrganizationDirectorRole;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,7 +34,7 @@ public class SalesOrganization extends Organization {
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new ManagerRole());
+        roles.add(new SalesOrganizationDirectorRole());
         return roles;
     }
 }

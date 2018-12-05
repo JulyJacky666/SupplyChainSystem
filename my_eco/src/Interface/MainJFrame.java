@@ -8,6 +8,11 @@ import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Area.Area;
+import Business.Employee.Employee;
+import Business.Employee.Worker;
+import Business.Enterprise.Entities.ManufactureTask;
+import Business.Enterprise.Entities.WorkLine;
+import Business.Enterprise.ManufactureEnterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -15,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -35,6 +41,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         showtime();
+        flushall();
         this.setSize(1000, 1000);
     }
 
@@ -43,6 +50,7 @@ public class MainJFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tickTock();
+
             }
         });
         timer.setRepeats(true);
@@ -54,6 +62,102 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public void tickTock() {
         timelable.setText(DateFormat.getDateTimeInstance().format(new Date()));
+    }
+
+    public void flushall() {
+        //flush the system every 10 seconds
+        Timer timer = new Timer(20000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flushManufactureEnterpriseTasks();
+                flushManufactureEnterpriseWorkers();
+                System.out.println("20s in frame");
+            }
+        });
+        timer.setRepeats(true);
+        timer.setCoalesce(true);
+        timer.setInitialDelay(0);
+        timer.start();
+
+    }
+
+    public void flushManufactureEnterpriseTasks() {
+
+        for (ManufactureEnterprise manufactureEnterprise : this.system.getAllManufactureEnterprises().keySet()) {
+            // for double check the worker 
+
+
+            // for double check to remove all workable worker in lines;
+            for (WorkLine workline : manufactureEnterprise.getFactory().getWorklines()) {
+                for (Worker worker : workline.getWorkersArrayList()) {
+                    if (worker.isWorkable() == true) {
+                        workline.getWorkersArrayList().remove(worker);
+                    }
+                }
+            }
+
+            // to add all flush task status
+            for (ManufactureTask task : manufactureEnterprise.getManufactureTasksdirectory()) {
+                if (task.getCompleted() == false && task.getTimeremains() > 0) {
+                    long diff = new Date().getTime() - task.getCreatedtimeDate().getTime();
+                    int counts = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS)) % 20;
+                    task.setHasexperincedDays(counts);
+                    System.out.println("day +1");
+                    task.calculateTimeRemains();
+
+//            System.out.println("seconds: " + TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS));
+                } else if (task.getCompleted() == false && task.getTimeremains() <= 0) {
+                    task.setTimeremains(0);
+                    task.setCompleted(Boolean.TRUE);
+                    for (Worker worker : task.getMenTakePartIn()) {
+                        worker.setWorkable(Boolean.TRUE);
+                        for (WorkLine workline : manufactureEnterprise.getFactory().getWorklines()) {
+                            if (workline.getWorkersArrayList().contains(worker)) {
+                                workline.getWorkersArrayList().remove(worker);
+                            }
+                        }
+                    }
+
+//                    task.getMenTakePartIn().clear();
+                }
+            }
+        }
+    }
+
+    public void flushManufactureEnterpriseWorkers() {
+        for (ManufactureEnterprise manufactureEnterprise : this.system.getAllManufactureEnterprises().keySet()) {
+            for (Organization organization : manufactureEnterprise.getOrganizationDirectory().getOrganizationList()) {
+                for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+                    if (employee instanceof Worker) {
+                        Worker worker = (Worker) employee;
+
+                        if (worker.isIsOnVacation() == false) {
+                            for (ManufactureTask task : worker.getTaskList()) {
+                                if (task.getCompleted() == false) {
+                                    worker.setWorkable(false);
+                                    break;
+                                } else {
+                                    worker.setWorkable(true);
+                                }
+                            }
+                        }
+                        if (worker.isIsOnVacation() == true) {
+                            if (worker.getReturnTime() < worker.getAbsensetime()) {
+                                long diff = new Date().getTime() - worker.getOffstartDate().getTime();
+                                int counts = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS)) % 20;
+                                worker.setReturnTime(counts);
+                                if (worker.getReturnTime() >= worker.getAbsensetime()) {
+                                    worker.setWorkable(Boolean.TRUE);
+                                    worker.setIsOnVacation(false);
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -156,7 +260,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-        // Get user name
         String userName = userNameJTextField.getText();
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
@@ -181,15 +284,16 @@ public class MainJFrame extends javax.swing.JFrame {
                             if (userAccount != null) {
                                 inEnterprise = enterprise;
                                 inOrganization = organization;
+//                                System.out.println(inOrganization.getName()+"999"+inEnterprise.getName());
                                 break;
                             }
                         }
-
+                        if (inOrganization != null) {
+//                            System.out.println(inOrganization.getName()+"123");
+                            break;
+                        }
                     } else {
                         inEnterprise = enterprise;
-                        break;
-                    }
-                    if (inOrganization != null) {
                         break;
                     }
                 }
@@ -203,6 +307,7 @@ public class MainJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
         } else {
+//            System.out.println(inOrganization.getName() +"main jaframe");
             CardLayout layout = (CardLayout) container.getLayout();
             container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
             layout.next(container);

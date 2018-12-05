@@ -19,6 +19,6 @@ import static Business.Organization.Organization.Type.SalesOrganization;
  */
 public class SalesManRole extends Role{
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new SalesmanWorkAreaJPanel(userProcessContainer, account, (SalesOrganization)organization, enterprise);
+        return new SalesmanWorkAreaJPanel(userProcessContainer, account, (SalesOrganization)organization, enterprise, business.getAreaList());
     }
 }

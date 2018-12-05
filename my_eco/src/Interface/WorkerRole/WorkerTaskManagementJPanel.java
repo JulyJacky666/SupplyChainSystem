@@ -26,7 +26,7 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
 //    UserAccount account;
-    Worker worker ; 
+    Worker worker;
 
     public WorkerTaskManagementJPanel(JPanel userProcessContainer, Worker worker) {
         this.userProcessContainer = userProcessContainer;
@@ -34,19 +34,25 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
         initComponents();
         populatedoingtable();
         populatetodotable();
+        flushall();
     }
 
     public void populatedoingtable() {
-                DefaultTableModel model = (DefaultTableModel) doingtable.getModel();
+        DefaultTableModel model = (DefaultTableModel) doingtable.getModel();
         model.setRowCount(0);
-        for (ManufactureTask task: worker.getTaskList()){
-            if (task.getCompleted() ==false && task.getExcuted()==true){
+        for (ManufactureTask task : worker.getTaskList()) {
+            if(task.getTimeremains()<=0){
+                task.setCompleted(Boolean.TRUE);
+            }
+            if (task.getCompleted() == false && task.getExcuted() == true) {
+                
                 Object[] row = new Object[4];
                 row[0] = String.valueOf(task.getTaskid());
                 row[1] = String.valueOf(task.getCounts());
                 row[2] = String.valueOf(task.getProduct().getNameString());
                 row[3] = task.calculateTimeRemains();
                 
+
                 model.addRow(row);
             }
         }
@@ -56,26 +62,27 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
     public void populatetodotable() {
         DefaultTableModel model = (DefaultTableModel) completedtable.getModel();
         model.setRowCount(0);
-        for (ManufactureTask task: worker.getTaskList()){
-            if (task.getCompleted() ==true){
+        for (ManufactureTask task : worker.getTaskList()) {
+            if (task.getCompleted() == true) {
                 Object[] row = new Object[3];
                 row[0] = String.valueOf(task.getTaskid());
                 row[1] = String.valueOf(task.getCounts());
                 row[2] = String.valueOf(task.getProduct().getNameString());
-                
+
                 model.addRow(row);
             }
         }
-        
+
     }
-       public void flushall() {
+
+    public void flushall() {
         //flush the system every 20 seconds
-        Timer timer = new Timer(20000, new ActionListener() {
+        Timer timer = new Timer(10000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                        populatedoingtable();
-        populatetodotable();
-                System.out.println("20s");
+                populatedoingtable();
+                populatetodotable();
+                System.out.println("10s in work");
             }
         });
         timer.setRepeats(true);
@@ -191,7 +198,7 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-               userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed

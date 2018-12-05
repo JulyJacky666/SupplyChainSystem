@@ -58,6 +58,9 @@ public class LeaveRequest {
     }
     
     
-    
+    @Override
+    public String toString(){
+        return String.valueOf(this.getRequestid());
+    }
     
 }
