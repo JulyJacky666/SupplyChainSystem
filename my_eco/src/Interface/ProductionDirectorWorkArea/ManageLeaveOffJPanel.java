@@ -108,7 +108,7 @@ public class ManageLeaveOffJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, 160));
 
         approvejButton1.setText("Approve");
         approvejButton1.addActionListener(new java.awt.event.ActionListener() {

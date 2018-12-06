@@ -24,17 +24,19 @@ public class My_eco {
 //        System.out.println(NewClass.values().length);
 //        NewClass2 jjj= NewClass2.valueOf("jjj");
 //         System.out.println(NewClass.values().length);
-        System.out.println(new Date());
-        try {
-            Date d1 = new Date();
-            Thread.sleep(5000);
-            Date d2 = new Date();
-            long diff = d2.getTime() - d1.getTime();
-            System.out.println("seconds: " + TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS));
-
-        } catch (InterruptedException e) {
-
-        }
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+//        try {
+//            Date d1 = new Date();
+//            Thread.sleep(6000);
+//            Date d2 = new Date();
+//            long diff = d2.getTime() - d1.getTime();
+//            int ne = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS))/4;
+//            System.out.println("seconds: " + ne);
+////            System.out.println(3%2);
+//
+//        } catch (InterruptedException e) {
+//
+//        }
 
 //        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
 //        String inputString1 = "1 12 2018";

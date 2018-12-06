@@ -39,7 +39,7 @@ public class ManufactureEnterprise extends Enterprise {
         todomaterialHashMap = new HashMap<Material, Integer>();
         manufactureTasksdirectory = new  ArrayList<ManufactureTask>();
         buyOrdersdirectory = new ArrayList<Buyorder>();
-        flushall();
+//        flushall();
     }
 
     public ArrayList<SalesOrder> getReceivedOrders() {

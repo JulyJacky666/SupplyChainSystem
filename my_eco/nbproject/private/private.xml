@@ -6,68 +6,83 @@
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/MaterialDirectory.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/WorkerRole/WorkerLeavesManagePanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/WorkerRole/WorkerTaskManagementJPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/ManufactureDirector.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/CustomerServiceDirectorWorkArea/CustomerOrganizationDirectorWorkAreaJPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Organization/WarehouseOrganization.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/my_eco/NewClass.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/Product.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/CustomerAssistantRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/Material.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SystemAdminWorkArea/ManageAreaJPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/SalesOrganizationDirectorRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/ManagerRole.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/WarehouserDirectorRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/CustomerDirectory.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/my_eco/My_eco.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/CustomerServiceDirectorWorkArea/CreateNewCustomerJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/SalesManRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Area/Area.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/EcoSystem.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/SupplierEnterprise.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/ManufactureDirectorRole.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/CustomerAssisatant.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ProductionDirectorWorkArea/ProductionDirectorWorkAreaJPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/CustomerRole.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ProductionDirectorWorkArea/BuyingOrderCalculattionPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ProductionDirectorWorkArea/WorkLinesDetailsPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/ProductDirector.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/Employee.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ProductionDirectorWorkArea/MainCompanyManufactureTaskAssignPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/DB4OUtil/DB4OUtil.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManagerWorkArea/_MainCompanyAssignmentPlacementPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/ManufactureTask.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Organization/SalesOrganization.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/Worker.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/ProductDictory.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/Buyer.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/Customer.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManagerWorkArea/ManufactureOrgDetailsPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/SystemAdminRole.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManufactureDirectorWorkArea/BuyingOrderCalculattionPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ProductionDirectorWorkArea/CreateManufactureTaskJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManagerWorkArea/ManageEmployeeJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/Salesman.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Organization/CustomerServiceOrganization.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/BuyerRole.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SalesOrganizationDirectorWorkArea/SalesEnterpriseDirectorWorkAreaJPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/ProductionDirectorRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Enterprise.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/CustomerServiceDirector.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/CustomerServiceDirectorWorkArea/ManagementCustomersJPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/SalesAndBuyDirectorRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/UserAccount/UserAccountDirectory.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Organization/DeliveryOrganization.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/Role.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/SalesOrder.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SalesmanWorkarea/SalesmanWorkAreaJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/SalesEnterprise.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ProductionDirectorWorkArea/ManageLeaveOffJPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/CustomerServiceDirectorRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SalesmanWorkarea/CreatAOrderJPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManufactureDirectorWorkArea/ManufactureDirectorWorkAreaJPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManagerWorkArea/_ManageUserAccountJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SalesmanWorkarea/OrderLisitJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManagerWorkArea/ManageOrganizationJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Organization/OrganizationDirectory.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SalesEnterpriseDirectorWorkArea/AssignSlaesOrderToManuJPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SalesEnterpriseDirectorWorkArea/SalesEnterpriseDirectorWorkAreaJPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/Manager.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/Factory.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/MainJFrame.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/Warehouse.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/ConfigureASystem.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SalesOrganizationDirectorWorkArea/AssignSlaesOrderToManuJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/LeaveRequest.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManufactureDirectorWorkArea/MainCompanyAssignmentPlacementPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/SalesOrganizationDirector.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Employee/EmployeeDirectory.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/SalesOrderDirectory.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/Entities/WorkLine.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/DriverRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/EnterpriseDirectory.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/WorkerRole/WorkerWorkAreaJPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManagerWorkArea/_MainCompanyManufactureTaskAssignPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManufactureDirectorWorkArea/MainCompanyManufactureTaskAssignPanel.java</file>
-            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManufactureDirectorWorkArea/CreateManufactureTask.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Organization/ProductOrganization.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/WorkerRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/UserAccount/UserAccount.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/DeliveryDirectorRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Organization/Organization.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/ManagerWorkArea/ManagerWorkAreaJPanel.java</file>
+            <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Role/WarehouserKeeperRole.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Interface/SystemAdminWorkArea/ManageEnterpriseManagerJPanel.java</file>
             <file>file:/Users/keweiji/Desktop/untitled%20folder/group_assignment_cptbtptp/my_eco/src/Business/Enterprise/ManufactureEnterprise.java</file>
         </group>

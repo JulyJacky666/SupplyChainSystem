@@ -18,6 +18,7 @@ public class WorkLine {
     private int linenumber;
     private int capcity;
     private ArrayList<Worker> workersArrayList;
+    private ArrayList<Worker> tempArrayList;
     
     public WorkLine(int number ){
         this.linenumber=number;
@@ -33,6 +34,15 @@ public class WorkLine {
     public void setLinenumber(int linenumber) {
         this.linenumber = linenumber;
     }
+
+    public ArrayList<Worker> getTempArrayList() {
+        return tempArrayList;
+    }
+
+    public void setTempArrayList(ArrayList<Worker> tempArrayList) {
+        this.tempArrayList = tempArrayList;
+    }
+    
 
     public int getCapcity() {
         return capcity;

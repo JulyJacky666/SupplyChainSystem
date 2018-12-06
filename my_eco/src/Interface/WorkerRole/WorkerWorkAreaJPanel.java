@@ -63,9 +63,10 @@ public class WorkerWorkAreaJPanel extends javax.swing.JPanel {
     private void manageTaskBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTaskBtActionPerformed
         // TODO add your handling code here:
                 Worker worker = (Worker) account.getEmployee();
-        WorkerLeavesManagePanel workerLeavePanel = new WorkerLeavesManagePanel(userProcessContainer, worker);
+//        WorkerLeavesManagePanel workerLeavePanel = new WorkerLeavesManagePanel(userProcessContainer, worker);
         WorkerTaskManagementJPanel workertaskPanel = new WorkerTaskManagementJPanel(userProcessContainer, worker);
         userProcessContainer.add("workerManageTaskPanel", workertaskPanel);
+//        workertaskPanel.flushall();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageTaskBtActionPerformed

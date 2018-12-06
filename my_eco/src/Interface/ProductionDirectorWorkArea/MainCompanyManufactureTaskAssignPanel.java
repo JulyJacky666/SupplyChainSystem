@@ -98,6 +98,8 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
 
             model.addRow(row);
         }
+        
+        
 
     }
 
@@ -116,9 +118,9 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         workersAvaliavlejTable2 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         linesjTable2 = new javax.swing.JTable();
-        submitBT = new javax.swing.JButton();
+        assignBT = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        startjButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -218,13 +220,13 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 310, 110));
 
-        submitBT.setText("Assigns to ");
-        submitBT.addActionListener(new java.awt.event.ActionListener() {
+        assignBT.setText("Assigns to ");
+        assignBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBTActionPerformed(evt);
+                assignBTActionPerformed(evt);
             }
         });
-        add(submitBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 150, -1));
+        add(assignBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 150, -1));
 
         jButton1.setText("<<Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -234,13 +236,13 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
-        jButton2.setText("Start this Task");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        startjButton2.setText("Start this Task");
+        startjButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                startjButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, 170, 40));
+        add(startjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, 170, 40));
 
         jLabel1.setText("Unstarted tasks:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
@@ -291,7 +293,7 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void submitBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBTActionPerformed
+    private void assignBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBTActionPerformed
         // TODO add your handling code here:
 
         try {
@@ -322,9 +324,9 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         }
 
 
-    }//GEN-LAST:event_submitBTActionPerformed
+    }//GEN-LAST:event_assignBTActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void startjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startjButton2ActionPerformed
         // TODO add your handling code here:
         try {
             int taskindex = taskjTable1.getSelectedRow();
@@ -347,13 +349,13 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
                     }
 
                     JOptionPane.showMessageDialog(null, "launch the task successfully!");
-
+                    
                     for (Material material : product.getPeoductStructure().keySet()) {
                         int amountsavaliable = warehouse.getAvaliableMaterialHashMap().get(material);
                         int newamounts = amountsavaliable - product.getPeoductStructure().get(material) * amounts;
                         this.manufactureEnterprise.getWarehouse().getAvaliableMaterialHashMap().put(material, newamounts);
                     }
-
+                    task.setStarteproductionDate(new Date());
                     task.setExcuted(true);
                     populateAlltables();
 
@@ -363,7 +365,7 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_startjButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -415,9 +417,9 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton assignBT;
     private javax.swing.JButton checkjButton4;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -427,7 +429,7 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable linesjTable2;
-    private javax.swing.JButton submitBT;
+    private javax.swing.JButton startjButton2;
     private javax.swing.JTable taskjTable1;
     private javax.swing.JTable workersAvaliavlejTable2;
     // End of variables declaration//GEN-END:variables

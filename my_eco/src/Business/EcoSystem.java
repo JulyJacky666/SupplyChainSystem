@@ -59,7 +59,7 @@ public class EcoSystem extends Organization {
         allManufactureEnterprises = new HashMap<ManufactureEnterprise,String>();
         allSalesEnterprises = new HashMap<SalesEnterprise,String>();
         allSupplierEnterprises = new HashMap<SupplierEnterprise,String>();
-        flushall();
+//        flushall();
     }
     
     

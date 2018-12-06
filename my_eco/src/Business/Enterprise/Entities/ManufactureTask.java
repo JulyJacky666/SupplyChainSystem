@@ -14,9 +14,9 @@ import java.util.Date;
  * @author keweiji
  */
 public class ManufactureTask {
-    
-    private static  int taskcounts=1;
-    private  int taskid;
+
+    private static int taskcounts = 1;
+    private int taskid;
     private int counts;
     private int orderid;
     private ArrayList<Worker> menTakePartIn;
@@ -26,10 +26,10 @@ public class ManufactureTask {
     private int hasexperincedDays;
     private double timeremains;
     private Date createdtimeDate;
-    
-    
-    public ManufactureTask(int counts, Product product){
-        this.taskid=taskcounts;
+    private Date starteproductionDate;
+
+    public ManufactureTask(int counts, Product product) {
+        this.taskid = taskcounts;
         this.counts = counts;
         this.product = product;
         this.excuted = false;
@@ -48,19 +48,37 @@ public class ManufactureTask {
     public void setTaskid(int taskid) {
         this.taskid = taskid;
     }
-    
-    public double calculateTimeRemains(){
-        double totaltime = this.product.getAssembletime() * this.getCounts() / this.getMenTakePartIn().size();
-        double remains = totaltime - this.hasexperincedDays;
-        this.setTimeremains(remains);
+
+    public double calculateTimeRemains() {
+        double remains = Double.POSITIVE_INFINITY;
+        if (this.getMenTakePartIn().size() > 0) {
+            double totaltime = this.product.getAssembletime() * this.getCounts() / this.getMenTakePartIn().size();
+            remains = totaltime - this.hasexperincedDays;
+            this.setTimeremains(remains);
+//            return remains;
+        }
         return remains;
+////        int men = this.getMenTakePartIn().size()==0? 1:this.getMenTakePartIn().size();
+//        double totaltime = this.product.getAssembletime() * this.getCounts() / men;
+//        double remains = totaltime - this.hasexperincedDays;
+//        this.setTimeremains(remains);
+//        return remains;
     }
+
     public double getTimeremains() {
         return timeremains;
     }
 
     public void setTimeremains(double timeremains) {
         this.timeremains = timeremains;
+    }
+
+    public Date getStarteproductionDate() {
+        return starteproductionDate;
+    }
+
+    public void setStarteproductionDate(Date starteproductionDate) {
+        this.starteproductionDate = starteproductionDate;
     }
     
 
@@ -71,7 +89,7 @@ public class ManufactureTask {
     public void setHasexperincedDays(int hasexperincedDays) {
         this.hasexperincedDays = hasexperincedDays;
     }
-    
+
     public int getCounts() {
         return counts;
     }
@@ -111,7 +129,6 @@ public class ManufactureTask {
     public void setMenTakePartIn(ArrayList<Worker> menTakePartIn) {
         this.menTakePartIn = menTakePartIn;
     }
-    
 
     public Boolean getExcuted() {
         return excuted;
@@ -136,12 +153,10 @@ public class ManufactureTask {
     public void setCreatedtimeDate(Date createdtimeDate) {
         this.createdtimeDate = createdtimeDate;
     }
-    
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return String.valueOf(this.getOrderid());
     }
-    
-    
+
 }

@@ -50,7 +50,7 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
                 row[0] = String.valueOf(task.getTaskid());
                 row[1] = String.valueOf(task.getCounts());
                 row[2] = String.valueOf(task.getProduct().getNameString());
-                row[3] = task.calculateTimeRemains();
+                row[3] = task.getTimeremains();
                 
 
                 model.addRow(row);
@@ -82,7 +82,7 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 populatedoingtable();
                 populatetodotable();
-                System.out.println("10s in work");
+//                System.out.println("10s in worker task panel " +worker.getName());
             }
         });
         timer.setRepeats(true);

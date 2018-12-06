@@ -19,6 +19,8 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
@@ -41,8 +43,9 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         showtime();
-        flushall();
+        refreshAll();
         this.setSize(1000, 1000);
+    
     }
 
     public void showtime() {
@@ -64,14 +67,15 @@ public class MainJFrame extends javax.swing.JFrame {
         timelable.setText(DateFormat.getDateTimeInstance().format(new Date()));
     }
 
-    public void flushall() {
-        //flush the system every 10 seconds
+    public void refreshAll() {
+        //flush the system every 20 seconds
         Timer timer = new Timer(20000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 flushManufactureEnterpriseTasks();
                 flushManufactureEnterpriseWorkers();
-                System.out.println("20s in frame");
+                System.out.println("Refresh at "+new SimpleDateFormat("HH:mm:ss").format(new Date()));
+                
             }
         });
         timer.setRepeats(true);
@@ -86,27 +90,29 @@ public class MainJFrame extends javax.swing.JFrame {
         for (ManufactureEnterprise manufactureEnterprise : this.system.getAllManufactureEnterprises().keySet()) {
             // for double check the worker 
 
-
             // for double check to remove all workable worker in lines;
-            for (WorkLine workline : manufactureEnterprise.getFactory().getWorklines()) {
-                for (Worker worker : workline.getWorkersArrayList()) {
-                    if (worker.isWorkable() == true) {
-                        workline.getWorkersArrayList().remove(worker);
-                    }
-                }
-            }
-
+            ArrayList<WorkLine> worklines = manufactureEnterprise.getFactory().getWorklines();
+//            for(WorkLine workLine:worklines){
+//                workLine.getWorkersArrayList().clear();
+//            }
             // to add all flush task status
             for (ManufactureTask task : manufactureEnterprise.getManufactureTasksdirectory()) {
-                if (task.getCompleted() == false && task.getTimeremains() > 0) {
-                    long diff = new Date().getTime() - task.getCreatedtimeDate().getTime();
-                    int counts = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS)) % 20;
-                    task.setHasexperincedDays(counts);
-                    System.out.println("day +1");
-                    task.calculateTimeRemains();
+                if (task.getCompleted() == false && task.getTimeremains() > 0 && task.getStarteproductionDate() != null) {
+                    long diff = new Date().getTime() - task.getStarteproductionDate().getTime();
+
+                    int counts = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS)) / 20;
+                    System.out.println("diff" + diff);
+                    if (counts > 0) {
+                        task.setHasexperincedDays(counts);
+                        System.out.println("counts:" + counts);
+                        System.out.println("day +1");
+                        System.out.println(task.calculateTimeRemains());
+
+                    }
 
 //            System.out.println("seconds: " + TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS));
-                } else if (task.getCompleted() == false && task.getTimeremains() <= 0) {
+                }
+                if (task.getCompleted() == false && task.getTimeremains() <= 0) {
                     task.setTimeremains(0);
                     task.setCompleted(Boolean.TRUE);
                     for (Worker worker : task.getMenTakePartIn()) {
@@ -141,15 +147,28 @@ public class MainJFrame extends javax.swing.JFrame {
                                 }
                             }
                         }
+
+                        if (worker.isWorkable() == true) {
+                            for (WorkLine workLine : manufactureEnterprise.getFactory().getWorklines()) {
+                                if (workLine.getWorkersArrayList().contains(workLine)) {
+                                    workLine.getWorkersArrayList().remove(worker);
+                                    System.out.println("remove" + worker.getName());
+                                }
+                            }
+                        }
+
                         if (worker.isIsOnVacation() == true) {
                             if (worker.getReturnTime() < worker.getAbsensetime()) {
                                 long diff = new Date().getTime() - worker.getOffstartDate().getTime();
-                                int counts = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS)) % 20;
-                                worker.setReturnTime(counts);
-                                if (worker.getReturnTime() >= worker.getAbsensetime()) {
-                                    worker.setWorkable(Boolean.TRUE);
-                                    worker.setIsOnVacation(false);
+                                int counts = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS)) / 20;
+                                if (counts > 0) {
+                                    worker.setReturnTime(counts);
+                                    if (worker.getReturnTime() >= worker.getAbsensetime()) {
+                                        worker.setWorkable(Boolean.TRUE);
+                                        worker.setIsOnVacation(false);
+                                    }
                                 }
+
                             }
 
                         }
@@ -309,7 +328,9 @@ public class MainJFrame extends javax.swing.JFrame {
         } else {
 //            System.out.println(inOrganization.getName() +"main jaframe");
             CardLayout layout = (CardLayout) container.getLayout();
-            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+            JPanel panel = userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system);
+            container.add("workArea", panel);
+            
             layout.next(container);
         }
 
