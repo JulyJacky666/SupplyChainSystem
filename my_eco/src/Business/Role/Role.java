@@ -29,6 +29,8 @@ public abstract class Role {
         SalesOrganizationDirector("Sales Organization Director"),
         Salesman("Salesman"),
         Customer("Customer"),
+        Buyer("Buyer"),
+        PurchaseDirector("Purchase Director"),
         WarehouseDirector("Warehouse Director"),
         Warehousekeeper("Warehouse keeper"),
         Driver("Driver"),

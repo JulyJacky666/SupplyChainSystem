@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.ProductionDirectorWorkArea;
+package Interface.BuyOrganizationDirectorWorkArea;
 
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Entities.ManufactureTask;
 import Business.Enterprise.Entities.Material;
 import Business.Enterprise.Entities.Product;
 import Business.Enterprise.Entities.SalesOrder;
@@ -43,7 +44,7 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
 //        this.mainenterprise = enterprise;
         this.manufactureEnterprise = (ManufactureEnterprise) enterprise;
         this.todoproducts = new HashMap<Product, Integer>();
-        this.productsInWarehouse = new HashMap<Product, Integer>();
+        this.productsInWarehouse = this.manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap();
         this.materialInWarehouse = new HashMap<Material, Integer>();
         System.out.println(manufactureEnterprise.getName());
 //        this.tobuyproducts = new HashMap<Product,Integer>();
@@ -72,25 +73,20 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
     public void populateorders() {
         DefaultTableModel model = (DefaultTableModel) salesOrderjTable2.getModel();
         model.setRowCount(0);
-        for (SalesOrder salesOrder : this.manufactureEnterprise.getReceivedOrders()) {
-            if (salesOrder.isIscalcutated() == false) {
-//                this.todoOrders.add(salesOrder);
-//                    Object[] row = new Object[]
-                for (Product product : salesOrder.getItems().keySet()) {
-                    if (!this.todoproducts.containsKey(product)) {
-                        this.todoproducts.put(product, salesOrder.getItems().get(product));
-                    } else {
-                        int number = this.todoproducts.get(product);
-                        number += salesOrder.getItems().get(product);
-                        this.todoproducts.put(product, number);
-                    }
-                    Object[] row = new Object[3];
-                    row[0] = salesOrder.getOrderid();
-                    row[1] = product.getNameString();
-                    row[2] = salesOrder.getItems().get(product);
-                    model.addRow(row);
+        for (ManufactureTask task : this.manufactureEnterprise.getNeedMaterialTasks()) {
+            if (task.isIsCalculated()== false) {
 
-                }
+                    Product product = task.getProduct();
+                    int numbers = task.getCounts();
+                    this.todoproducts.put(product, numbers);
+                    Object[] row = new Object[3];
+                    row[0] = task.getTaskid();
+                    row[1] = product;
+                    row[2] = numbers;
+                    model.addRow(row);
+//                    HashMap<Material,Integer> materials = product.getPeoductStructure();
+//                    for()
+
             }
         }
     }
@@ -133,7 +129,7 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         salesOrderjTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        calculatejButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         taskjTable3 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -179,7 +175,7 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Order id", "Product Name", "Amount"
+                "Task id", "Product Name", "Amount"
             }
         ) {
             Class[] types = new Class [] {
@@ -204,16 +200,16 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         jLabel1.setText("Ware House:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 100, -1));
 
-        jLabel2.setText("Current  Received Slaes Orders:");
+        jLabel2.setText("These tasks need materials to start:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 200, -1));
 
-        jButton1.setText("One clik to calculate all!! ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        calculatejButton1.setText("One clik to calculate all!! ");
+        calculatejButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                calculatejButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 180, 40));
+        add(calculatejButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 180, 40));
 
         taskjTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -264,7 +260,7 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void calculatejButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculatejButton1ActionPerformed
         // TODO add your handling code here:
         HashMap<Material, Integer> ret_temp = new HashMap<Material, Integer>();
         // to reduce the amount avaliable in the warehouse
@@ -296,39 +292,27 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
                 int material_avaliable = materialInWarehouse.get(material);
 //                material_need_number = material_need_number < material_avaliable? 0:material_need_number - material_avaliable;
 //                ret_temp.put(material, material_need_number);
-
-                HashMap<Material, Integer> sub_material = material.getMaterialStructure();
-                for (Material m : sub_material.keySet()) {
-                    int sub_sub_need = material_avaliable * sub_material.get(m);
-                    int sub_need = ret_temp.get(m);
-                    sub_need = sub_need < sub_sub_need ? 0 : sub_need - sub_sub_need;
-                    ret_temp.put(m, sub_need);
+//                this.manufactureEnterprise.getTodomaterialHashMap().put(material, WIDTH)
+                int tobuy = material_need_number<material_avaliable?0:material_need_number-material_avaliable;
+                if(this.manufactureEnterprise.getTodomaterialHashMap().containsKey(material)){
+                    int alreadyamountstobuy=this.manufactureEnterprise.getTodomaterialHashMap().get(material);
+                    this.manufactureEnterprise.getTodomaterialHashMap().put(material, alreadyamountstobuy+tobuy);
+                }else{
+                     this.manufactureEnterprise.getTodomaterialHashMap().put(material,tobuy);
                 }
             }
         }
-        // add to organization's todo materialmap
-        HashMap<Material, Integer> todomaterialMap = this.manufactureEnterprise.getTodomaterialHashMap();
-        for (Material material : ret_temp.keySet()) {
-            if (todomaterialMap.containsKey(material)) {
-                int number = todomaterialMap.get(material);
-                number = number + ret_temp.get(material);
-                todomaterialMap.put(material, number);
 
-            } else {
-                todomaterialMap.put(material, ret_temp.get(material));
-            }
-        }
-
-        for (SalesOrder salesOrder : this.manufactureEnterprise.getReceivedOrders()) {
-            salesOrder.setIscalcutated(true);
+        for (ManufactureTask task : this.manufactureEnterprise.getNeedMaterialTasks()) {
+            task.setIsCalculated(true);
         }
         populateorders();
         populatetask();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_calculatejButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton calculatejButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

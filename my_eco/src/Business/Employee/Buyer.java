@@ -22,7 +22,7 @@ public class Buyer extends Employee{
     public ArrayList<Buyorder> getBuyerorders() {
         return buyerorders;
     }
-
+    
     public void setBuyerorders(ArrayList<Buyorder> buyerorders) {
         this.buyerorders = buyerorders;
     }

@@ -79,14 +79,15 @@ public abstract class Employee {
             case 8:
                 hardroleString = "Buyer";
                 break;
-
+            case 9:
+                hardroleString = "Purchase Director";
+                break;
             case 10:
                 hardroleString = "Warehouse Keeper";
                 break;
             case 11:
                 hardroleString = "Warehouse Director";
                 break;
-
             case 12:
                 hardroleString = "Driver";
                 break;
@@ -110,11 +111,13 @@ public abstract class Employee {
         if (rolenumber == 6 || rolenumber == 7) {
             hardorgString = "Production Organization";
         }
-        if (rolenumber == 8) {
+        if (rolenumber == 8 || rolenumber == 9) {
             hardorgString = "Purchase Organization";
-        }        if (rolenumber == 10||rolenumber == 11) {
+        }
+        if (rolenumber == 10 || rolenumber == 11) {
             hardorgString = "Warehouse Organization";
-        }if (rolenumber == 12||rolenumber == 13) {
+        }
+        if (rolenumber == 12 || rolenumber == 13) {
             hardorgString = "Delivery Organization";
         }
         return hardorgString;

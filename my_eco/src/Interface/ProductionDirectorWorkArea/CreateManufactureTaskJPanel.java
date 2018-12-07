@@ -36,7 +36,7 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
     public CreateManufactureTaskJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise = (ManufactureEnterprise)enterprise;
+        this.enterprise = (ManufactureEnterprise) enterprise;
 //        this.salesAndBuysOrganization = salesAndBuysOrganization;
         populateorders();
         poptasks();
@@ -49,7 +49,7 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) ordertable.getModel();
         model.setRowCount(0);
         for (SalesOrder salesOrder : this.enterprise.getReceivedOrders()) {
-            if (salesOrder.isIscalcutated()== false) {
+            if (salesOrder.isIscalcutated() == false) {
                 for (Product product : salesOrder.getItems().keySet()) {
                     Object[] row = new Object[4];
                     row[0] = String.valueOf(salesOrder.getOrderid());
@@ -75,13 +75,13 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) taskjTable2.getModel();
         model.setRowCount(0);
         for (ManufactureTask task : this.enterprise.getManufactureTasksdirectory()) {
-               if(task.getExcuted()== false){
-                   Object[] row = new Object[3];
-                   row[0] = task.getTaskid();
-                   row[1] = task.getCounts();
-                   row[2] = task.getProduct().getNameString();
-                   model.addRow(row);
-               }
+            if (task.getExcuted() == false) {
+                Object[] row = new Object[3];
+                row[0] = task.getTaskid();
+                row[1] = task.getCounts();
+                row[2] = task.getProduct().getNameString();
+                model.addRow(row);
+            }
         }
     }
 
@@ -98,7 +98,7 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
         ordertable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         taskjTable2 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        createtaskjButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -165,13 +165,13 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, 130));
 
-        jButton1.setText("one click to create all");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createtaskjButton1.setText("one click to create all");
+        createtaskjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createtaskjButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 200, -1));
+        add(createtaskjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 200, -1));
 
         jButton2.setText("back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -188,32 +188,32 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void createtaskjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createtaskjButton1ActionPerformed
         // TODO add your handling code here:
 //        for(Product product: store.keySet()){
 //            ManufactureTask manufactureTask = new ManufactureTask(store.get(product), product);
 //            this.enterprise.add
 //        }
-          for(SalesOrder salesOrder:this.enterprise.getReceivedOrders()){
-              if(salesOrder.isIscalcutated()==false){
-                  this.enterprise.addManufactureTask(salesOrder);
-                  salesOrder.setIscalcutated(true);
-              }
-          }
-          poptasks();
-          populateorders();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        for (SalesOrder salesOrder : this.enterprise.getReceivedOrders()) {
+            if (salesOrder.isIscalcutated() == false) {
+                this.enterprise.addManufactureTask(salesOrder);
+                salesOrder.setIscalcutated(true);
+            }
+        }
+        poptasks();
+        populateorders();
+    }//GEN-LAST:event_createtaskjButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-                userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton createtaskjButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

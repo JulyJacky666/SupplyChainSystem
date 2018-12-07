@@ -18,6 +18,7 @@ import Business.Role.CustomerServiceDirectorRole;
 import Business.Role.DeliveryDirectorRole;
 import Business.Role.DriverRole;
 import Business.Role.ProductionDirectorRole;
+import Business.Role.PurchaseDirectorRole;
 import Business.Role.Role;
 import Business.Role.SalesOrganizationDirectorRole;
 import Business.Role.SalesManRole;
@@ -70,6 +71,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             empRoleJComboBox.addItem("Worker");
             empRoleJComboBox.addItem("Production Director");
             empRoleJComboBox.addItem("Buyer");
+             empRoleJComboBox.addItem("Purchase Director");
         }
         if (this.enterprise instanceof SalesEnterprise) {
             empRoleJComboBox.addItem("Sales Organization Director");
@@ -257,7 +259,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
             case "Buyer":
                 number = 8;
-                role = null;
+                role = new BuyerRole();
+                break;
+                
+                            case "Purchase Director":
+                number = 9;
+                role = new PurchaseDirectorRole();
                 break;
             case "Warehouse Keeper":
                 number = 10;
@@ -280,8 +287,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         }
         Employee employee = organization.getEmployeeDirectory().createEmployee(name, number);
         UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
-        enterprise.getTopemployeeDirectory().getEmployeeList().add(employee);
-        enterprise.getUserAccountDirectory().getUserAccountList().add(userAccount);
+//        enterprise.getTopemployeeDirectory().getEmployeeList().add(employee);
+//        enterprise.getUserAccountDirectory().getUserAccountList().add(userAccount);
         System.out.println(organization.getName()+"create" + employee.getName() +employee.getHardRole());
 //        System.out.println(this.enterprise.getOrganizationDirectory());
         System.out.println("______");

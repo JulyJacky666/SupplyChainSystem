@@ -54,22 +54,24 @@ public class EmployeeDirectory {
             case 8:
                 employee = new Buyer(name);
                 break;
-            
+            case 9:
+                employee = new PurchaseDirector(name);
+                break;
             case 10:
                 employee = new Warehousekeeper(name);
                 break;
-            
+
             case 11:
                 employee = new WarehouseDirector(name);
                 break;
-                
+
             case 12:
                 employee = new Driver(name);
                 break;
-               
+
             case 13:
                 employee = new DeliveryDirector(name);
-                break;   
+                break;
 
         }
 
@@ -87,7 +89,7 @@ public class EmployeeDirectory {
         ArrayList<Employee> employees = this.getEmployeeList();
         if (!employees.isEmpty()) {
             for (Employee e : employees) {
-                if (e instanceof  Worker) {
+                if (e instanceof Worker) {
                     workers.add((Worker) e);
                 }
             }

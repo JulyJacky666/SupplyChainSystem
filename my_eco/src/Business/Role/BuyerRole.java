@@ -5,10 +5,26 @@
  */
 package Business.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Interface.BuyerWorkArea.BuyerWorkAreaJPanel;
+import javax.swing.JPanel;
+
 /**
  *
- * @author maibenben
+ * @author keweiji
  */
-public class BuyerRole {
-    
+public class BuyerRole extends Role {
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+//        return new ManageAreaJPanel(userProcessContainer, account, (ManufactureOrganization)organization, enterprise);
+//            return new ManagerWorkAreaJPanel(userProcessContainer, enterprise);
+//                return null;
+//    return userProcessContainer;
+        return new BuyerWorkAreaJPanel(userProcessContainer, account, enterprise,business.getAllManufactureEnterprises(),business.getAllSupplierEnterprises());
+
+    }
 }

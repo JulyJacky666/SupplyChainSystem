@@ -17,23 +17,43 @@ public class Buyorder {
     private static int counts=1;
 //    private ArrayList<Material> materials;
     private HashMap<Material, Integer> materials;
-    private boolean  isassigned;
+    private boolean  isDelivered;
  
     
     public Buyorder(){
         this.orderid = counts;
         this.materials= new HashMap<Material, Integer>();
         counts++;
-        this.isassigned = false;
-        
+        this.isDelivered = false;
     }
 
+    public HashMap<Material, Integer> getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(HashMap<Material, Integer> materials) {
+        this.materials = materials;
+    }
+
+    public boolean isIsDelivered() {
+        return isDelivered;
+    }
+
+    public void setIsDelivered(boolean isassigned) {
+        this.isDelivered = isassigned;
+    }
+    
     public int getOrderid() {
         return orderid;
     }
 
     public void setOrderid(int orderid) {
         this.orderid = orderid;
+    }
+    
+    @Override
+    public  String toString(){
+        return  String.valueOf(this.orderid);
     }
     
     

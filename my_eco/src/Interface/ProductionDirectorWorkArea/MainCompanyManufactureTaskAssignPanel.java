@@ -391,6 +391,9 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
                 System.out.println("need:" + material.getNameString() + product.getPeoductStructure().get(material) * amounts);
 
                 JOptionPane.showMessageDialog(null, "sorry, not enough material, please let Purchase organization get materials first");
+                task.setIsCalculated(false);
+                this.manufactureEnterprise.getNeedMaterialTasks().add(task);
+                
                 return;
             }
         }

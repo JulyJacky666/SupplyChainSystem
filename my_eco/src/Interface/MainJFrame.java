@@ -101,7 +101,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     long diff = new Date().getTime() - task.getStarteproductionDate().getTime();
 
                     int counts = (int) (TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS)) / 20;
-                    System.out.println("diff" + diff);
+//                    System.out.println("diff" + diff);
                     if (counts > 0) {
                         task.setHasexperincedDays(counts);
                         System.out.println("counts:" + counts);

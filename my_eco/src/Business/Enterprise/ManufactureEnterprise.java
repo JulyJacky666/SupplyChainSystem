@@ -31,6 +31,8 @@ public class ManufactureEnterprise extends Enterprise {
         private ArrayList<Buyorder> buyOrdersdirectory;
     private Factory factory;
     private HashMap<Material, Integer> todomaterialHashMap;
+    private ArrayList<ManufactureTask> needMaterialTasks;
+    private int delivertime;
 
     public ManufactureEnterprise(String name) {
         super(name, EnterpriseType.ManufactureEnterprise);
@@ -39,6 +41,7 @@ public class ManufactureEnterprise extends Enterprise {
         todomaterialHashMap = new HashMap<Material, Integer>();
         manufactureTasksdirectory = new  ArrayList<ManufactureTask>();
         buyOrdersdirectory = new ArrayList<Buyorder>();
+        delivertime = (int)(Math.random() * 4 + 1);
 //        flushall();
     }
 
@@ -61,6 +64,15 @@ public class ManufactureEnterprise extends Enterprise {
     public ArrayList<ManufactureTask> getManufactureTasksdirectory() {
         return manufactureTasksdirectory;
     }
+
+    public ArrayList<ManufactureTask> getNeedMaterialTasks() {
+        return needMaterialTasks;
+    }
+
+    public void setNeedMaterialTasks(ArrayList<ManufactureTask> needMaterialTasks) {
+        this.needMaterialTasks = needMaterialTasks;
+    }
+    
 
     public void setManufactureTasksdirectory(ArrayList<ManufactureTask> manufactureTasksdirectory) {
         this.manufactureTasksdirectory = manufactureTasksdirectory;
@@ -135,7 +147,10 @@ public class ManufactureEnterprise extends Enterprise {
     public void setFactory(Factory factory) {
         this.factory = factory;
     }
-    
+    @Override
+    public String toString(){
+        return  this.getName();
+    }
 
     @Override
     public ArrayList<Role> getSupportedRole() {

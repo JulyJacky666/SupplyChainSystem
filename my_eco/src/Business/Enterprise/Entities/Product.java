@@ -128,7 +128,7 @@ public class Product {
         if(!material.getSub_materials().isEmpty()){
             HashMap<Material, Integer> subMap = material.getSub_materials();
             for(Material sub_material:subMap.keySet()){
-                 ret.put(material, numbers_from_father );
+//                 ret.put(material, numbers_from_father );
                 int number = subMap.get(sub_material) * numbers_from_father;
                 helper(sub_material, number,ret );
             }

@@ -27,6 +27,7 @@ public class ManufactureTask {
     private double timeremains;
     private Date createdtimeDate;
     private Date starteproductionDate;
+    private boolean iscalculated;
 
     public ManufactureTask(int counts, Product product) {
         this.taskid = taskcounts;
@@ -38,6 +39,7 @@ public class ManufactureTask {
         this.timeremains = Integer.MAX_VALUE;
         this.createdtimeDate = new Date();
         this.menTakePartIn = new ArrayList<Worker>();
+        this.iscalculated=true;
         taskcounts++;
     }
 
@@ -137,6 +139,15 @@ public class ManufactureTask {
     public void setExcuted(Boolean excuted) {
         this.excuted = excuted;
     }
+
+    public boolean isIsCalculated() {
+        return iscalculated;
+    }
+
+    public void setIsCalculated(boolean isReadyProduction) {
+        this.iscalculated = isReadyProduction;
+    }
+    
 
     public Boolean getCompleted() {
         return completed;
