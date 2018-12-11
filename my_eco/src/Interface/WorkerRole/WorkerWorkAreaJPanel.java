@@ -21,11 +21,13 @@ public class WorkerWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     UserAccount account;
+//    private Worker workerl;
 
     public WorkerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
+        this.setOpaque(false);
 
     }
 
@@ -41,23 +43,26 @@ public class WorkerWorkAreaJPanel extends javax.swing.JPanel {
         manageTaskBt = new javax.swing.JButton();
         manageLeavesBt = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        manageTaskBt.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         manageTaskBt.setText("Manage Tasks");
         manageTaskBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageTaskBtActionPerformed(evt);
             }
         });
-        add(manageTaskBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+        add(manageTaskBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 260, 70));
 
+        manageLeavesBt.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         manageLeavesBt.setText("Manage  leaves");
         manageLeavesBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageLeavesBtActionPerformed(evt);
             }
         });
-        add(manageLeavesBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 130, -1));
+        add(manageLeavesBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 260, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageTaskBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTaskBtActionPerformed

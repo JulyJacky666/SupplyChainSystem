@@ -21,7 +21,7 @@ public class CustomerServiceDirectorRole extends Role{
             @Override
         public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
 
-            return new CustomerOrganizationDirectorWorkAreaJPanel(userProcessContainer,enterprise ,business.getAreaList());
+            return new CustomerOrganizationDirectorWorkAreaJPanel(userProcessContainer,enterprise ,business.getAreaList(),organization);
 
         }
 }

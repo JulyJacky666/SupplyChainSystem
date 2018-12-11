@@ -40,6 +40,7 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
 //        this.salesAndBuysOrganization = salesAndBuysOrganization;
         populateorders();
         poptasks();
+        this.setOpaque(false);
     }
 
     public void populateorders() {
@@ -78,8 +79,8 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
             if (task.getExcuted() == false) {
                 Object[] row = new Object[3];
                 row[0] = task.getTaskid();
-                row[1] = task.getCounts();
-                row[2] = task.getProduct().getNameString();
+                row[0] = task.getCounts();
+                row[1] = task.getProduct().getNameString();
                 model.addRow(row);
             }
         }
@@ -103,6 +104,7 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ordertable.setModel(new javax.swing.table.DefaultTableModel(
@@ -133,7 +135,7 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ordertable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 520, 140));
 
         taskjTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,29 +165,33 @@ public class CreateManufactureTaskJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(taskjTable2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, 130));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 520, 140));
 
+        createtaskjButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         createtaskjButton1.setText("one click to create all");
         createtaskjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createtaskjButton1ActionPerformed(evt);
             }
         });
-        add(createtaskjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 200, -1));
+        add(createtaskjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 260, -1));
 
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("New Received Orders:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 140, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 230, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("Unstarted Tasks:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createtaskjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createtaskjButton1ActionPerformed

@@ -20,11 +20,12 @@ public class My_eco {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         // TODO code application logic here
 //        System.out.println(NewClass.values().length);
 //        NewClass2 jjj= NewClass2.valueOf("jjj");
 //         System.out.println(NewClass.values().length);
-        System.out.println(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+        System.out.println((int)(Math.random() *10000));
 //        try {
 //            Date d1 = new Date();
 //            Thread.sleep(6000);

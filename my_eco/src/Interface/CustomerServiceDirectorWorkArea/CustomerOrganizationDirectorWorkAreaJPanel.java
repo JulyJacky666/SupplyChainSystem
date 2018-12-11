@@ -8,6 +8,8 @@ package Interface.CustomerServiceDirectorWorkArea;
 import Business.Area.Area;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.SalesEnterprise;
+import Business.Organization.CustomerServiceOrganization;
+import Business.Organization.Organization;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -24,12 +26,15 @@ public class CustomerOrganizationDirectorWorkAreaJPanel extends javax.swing.JPan
     private  ArrayList<Area> areaList;
     private JPanel userProcessContainer;
     private SalesEnterprise salesEnterprise;
+    private CustomerServiceOrganization customerServiceOrganization;
     
-    public CustomerOrganizationDirectorWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,ArrayList<Area> areaList ) {
+    public CustomerOrganizationDirectorWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,ArrayList<Area> areaList,Organization organization ) {
         initComponents();
         this.areaList=areaList;
         this.userProcessContainer=userProcessContainer;
         this.salesEnterprise = (SalesEnterprise)enterprise;
+        this.customerServiceOrganization = (CustomerServiceOrganization) organization;
+        this.setOpaque(false);
     }
 
     /**
@@ -42,16 +47,28 @@ public class CustomerOrganizationDirectorWorkAreaJPanel extends javax.swing.JPan
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jButton1.setText("Add Customer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 200, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 280, 60));
+
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        jButton2.setText("Assistants Performance Analysis");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 280, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -62,8 +79,16 @@ public class CustomerOrganizationDirectorWorkAreaJPanel extends javax.swing.JPan
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+             userProcessContainer.add("manageOrganizationJPanel", new AnalysisPanel(userProcessContainer, customerServiceOrganization));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }

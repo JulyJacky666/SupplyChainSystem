@@ -37,6 +37,7 @@ public class ManageLeaveOffJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.manufactureEnterprise = manufactureEnterprise;
         populatetable();
+        this.setOpaque(false);
     }
 
     public void populatetable() {
@@ -78,6 +79,7 @@ public class ManageLeaveOffJPanel extends javax.swing.JPanel {
         approvejButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -108,23 +110,25 @@ public class ManageLeaveOffJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 550, 160));
 
+        approvejButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         approvejButton1.setText("Approve");
         approvejButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 approvejButton1ActionPerformed(evt);
             }
         });
-        add(approvejButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, -1));
+        add(approvejButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
 
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("<<Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

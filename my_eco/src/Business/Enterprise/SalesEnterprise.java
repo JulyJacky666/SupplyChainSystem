@@ -10,7 +10,9 @@ import Business.Enterprise.Entities.Buyorder;
 import Business.Enterprise.Entities.Factory;
 import Business.Enterprise.Entities.ManufactureTask;
 import Business.Enterprise.Entities.Material;
+import Business.Enterprise.Entities.MaterialDirectory;
 import Business.Enterprise.Entities.Product;
+import Business.Enterprise.Entities.ProductDirectory;
 import Business.Enterprise.Entities.SalesOrder;
 import Business.Enterprise.Entities.Warehouse;
 import Business.Role.Role;
@@ -33,6 +35,7 @@ public class SalesEnterprise extends Enterprise {
   
     private ArrayList<SalesOrder> salesOrdersDirectoryArrayList;
     private CustomerDirectory customerDirectory;
+    private ProductDirectory productDictory;
    
 
 //    private HashMap<Material, Integer> todomaterialHashMap;
@@ -41,9 +44,20 @@ public class SalesEnterprise extends Enterprise {
         super(name, EnterpriseType.SalesEnterprise);
         customerDirectory= new CustomerDirectory();        
         salesOrdersDirectoryArrayList = new ArrayList<SalesOrder>();
+        productDictory =new ProductDirectory();
              
 //        flushall();
     }
+
+    public ProductDirectory getProductDictory() {
+        return productDictory;
+    }
+
+    public void setProductDictory(ProductDirectory productDictory) {
+        this.productDictory = productDictory;
+    }
+    
+    
 
 
 

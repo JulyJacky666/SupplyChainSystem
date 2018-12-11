@@ -27,11 +27,14 @@ public class BuyOrganizationDirectorWorkAreaJPanel extends javax.swing.JPanel {
     private PurchaseOrganization purchaseOrganization;
     private UserAccount account;
 
-    public BuyOrganizationDirectorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise ,Organization organization) {
+    public BuyOrganizationDirectorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, Organization organization) {
         initComponents();
-        this.manufactureEnterprise = (ManufactureEnterprise)enterprise;
+        this.manufactureEnterprise = (ManufactureEnterprise) enterprise;
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.purchaseOrganization = (PurchaseOrganization) organization;
+        System.out.println("this organization is null?" + organization == null);
+        this.setOpaque(false);
     }
 
     /**
@@ -43,38 +46,41 @@ public class BuyOrganizationDirectorWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        calculatejButton1 = new javax.swing.JButton();
         allocation = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Buying Order Calculation");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        calculatejButton1.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        calculatejButton1.setText("Buying Order Calculation");
+        calculatejButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                calculatejButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, -1, 50));
+        add(calculatejButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, 50));
 
+        allocation.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         allocation.setText("Order allocation");
         allocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allocationActionPerformed(evt);
             }
         });
-        add(allocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 200, 50));
+        add(allocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 250, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void calculatejButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculatejButton1ActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.add("manageOrganizationJPanel", new BuyingOrderCalculattionPanel(userProcessContainer, manufactureEnterprise));
+        userProcessContainer.add("buyordercalculate", new BuyingOrderCalculattionPanel(userProcessContainer, manufactureEnterprise));
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_calculatejButton1ActionPerformed
 
     private void allocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allocationActionPerformed
         // TODO add your handling code here:
-                userProcessContainer.add("manageOrganizationJPanel", new BuyOrderAssignsJPanel(userProcessContainer, purchaseOrganization,manufactureEnterprise));
+        userProcessContainer.add("buyorderallocation", new BuyOrderAllocationJpanel(userProcessContainer, purchaseOrganization, manufactureEnterprise));
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_allocationActionPerformed
@@ -82,6 +88,6 @@ public class BuyOrganizationDirectorWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton allocation;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton calculatejButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,6 +35,7 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
         populatedoingtable();
         populatetodotable();
         flushall();
+        this.setOpaque(false);
     }
 
     public void populatedoingtable() {
@@ -108,8 +109,8 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         completedtable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        showsjButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         doingtable.setModel(new javax.swing.table.DefaultTableModel(
@@ -120,7 +121,7 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Task id", "numbers", "Product", "Estimated times"
+                "Task id", "numbers", "Product", "Time Remain"
             }
         ) {
             Class[] types = new Class [] {
@@ -140,13 +141,15 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(doingtable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 450, 60));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 540, 80));
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jLabel1.setText("You have these tasks completed:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jLabel2.setText("You are in this task currently:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
         completedtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,24 +179,16 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(completedtable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 320, 90));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 540, 90));
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
-
-        showsjButton2.setText("Show detail");
-        showsjButton2.setEnabled(false);
-        showsjButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showsjButton2ActionPerformed(evt);
-            }
-        });
-        add(showsjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -202,10 +197,6 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void showsjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showsjButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showsjButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -216,6 +207,5 @@ public class WorkerTaskManagementJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton showsjButton2;
     // End of variables declaration//GEN-END:variables
 }

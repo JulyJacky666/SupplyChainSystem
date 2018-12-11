@@ -28,20 +28,23 @@ public class ManufactureEnterprise extends Enterprise {
 
     private ArrayList<SalesOrder> receivedOrders;
     private ArrayList<ManufactureTask> manufactureTasksdirectory;
-        private ArrayList<Buyorder> buyOrdersdirectory;
+    private ArrayList<Buyorder> buyOrdersdirectory;
     private Factory factory;
     private HashMap<Material, Integer> todomaterialHashMap;
     private ArrayList<ManufactureTask> needMaterialTasks;
+    private HashMap<Product, Integer> returnedProductHashMap;
     private int delivertime;
 
     public ManufactureEnterprise(String name) {
         super(name, EnterpriseType.ManufactureEnterprise);
         this.factory = new Factory();
-        receivedOrders = new ArrayList<SalesOrder> ();
+        receivedOrders = new ArrayList<SalesOrder>();
         todomaterialHashMap = new HashMap<Material, Integer>();
-        manufactureTasksdirectory = new  ArrayList<ManufactureTask>();
+        manufactureTasksdirectory = new ArrayList<ManufactureTask>();
         buyOrdersdirectory = new ArrayList<Buyorder>();
-        delivertime = (int)(Math.random() * 4 + 1);
+        delivertime = (int) (Math.random() * 4 + 1);
+        needMaterialTasks = new ArrayList<ManufactureTask>();
+        returnedProductHashMap = new HashMap<Product, Integer>();
 //        flushall();
     }
 
@@ -56,6 +59,15 @@ public class ManufactureEnterprise extends Enterprise {
     public HashMap<Material, Integer> getTodomaterialHashMap() {
         return todomaterialHashMap;
     }
+
+    public HashMap<Product, Integer> getReturnedProductHashMap() {
+        return returnedProductHashMap;
+    }
+
+    public void setReturnedProductHashMap(HashMap<Product, Integer> returnedProductHashMap) {
+        this.returnedProductHashMap = returnedProductHashMap;
+    }
+    
 
     public void setTodomaterialHashMap(HashMap<Material, Integer> todomaterialHashMap) {
         this.todomaterialHashMap = todomaterialHashMap;
@@ -72,10 +84,17 @@ public class ManufactureEnterprise extends Enterprise {
     public void setNeedMaterialTasks(ArrayList<ManufactureTask> needMaterialTasks) {
         this.needMaterialTasks = needMaterialTasks;
     }
-    
 
     public void setManufactureTasksdirectory(ArrayList<ManufactureTask> manufactureTasksdirectory) {
         this.manufactureTasksdirectory = manufactureTasksdirectory;
+    }
+
+    public int getDelivertime() {
+        return delivertime;
+    }
+
+    public void setDelivertime(int delivertime) {
+        this.delivertime = delivertime;
     }
 
     public void addManufactureTask(SalesOrder salesorder) {
@@ -100,6 +119,7 @@ public class ManufactureEnterprise extends Enterprise {
         for (Product product : tasks.keySet()) {
             ManufactureTask manufactureTask = new ManufactureTask(tasks.get(product), product);
             this.manufactureTasksdirectory.add(manufactureTask);
+            manufactureTask.setTaskid((int)(Math.random()*1000));
         }
     }
 
@@ -132,7 +152,8 @@ public class ManufactureEnterprise extends Enterprise {
         }
 
     }
-       public ArrayList<Buyorder> getBuyOrdersdirectory() {
+
+    public ArrayList<Buyorder> getBuyOrdersdirectory() {
         return buyOrdersdirectory;
     }
 
@@ -147,9 +168,10 @@ public class ManufactureEnterprise extends Enterprise {
     public void setFactory(Factory factory) {
         this.factory = factory;
     }
+
     @Override
-    public String toString(){
-        return  this.getName();
+    public String toString() {
+        return this.getName();
     }
 
     @Override

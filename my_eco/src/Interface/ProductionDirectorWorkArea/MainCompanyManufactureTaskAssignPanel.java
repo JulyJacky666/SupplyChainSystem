@@ -5,11 +5,13 @@
  */
 package Interface.ProductionDirectorWorkArea;
 
+import Business.Employee.Employee;
 import Interface.ManagerWorkArea.*;
 import Business.Employee.Worker;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Entities.ManufactureTask;
 import Business.Enterprise.Entities.Material;
+import Business.Enterprise.Entities.MaterialDirectory;
 import Business.Enterprise.Entities.Product;
 import Business.Enterprise.Entities.Warehouse;
 import Business.Enterprise.Entities.WorkLine;
@@ -38,14 +40,18 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private ManufactureEnterprise manufactureEnterprise;
-//    private ProductOrganization productionOrganization;
+    private ProductOrganization productionOrganization;
+    private MaterialDirectory materialDirectory;
 
-    public MainCompanyManufactureTaskAssignPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public MainCompanyManufactureTaskAssignPanel(JPanel userProcessContainer, ProductOrganization productOrganization, Enterprise enterprise,MaterialDirectory materialDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.manufactureEnterprise = (ManufactureEnterprise) enterprise;
+        this.productionOrganization = productOrganization;
+        this.materialDirectory = materialDirectory;
 //        this.productionOrganization = productOrganization;
         populateAlltables();
+        this.setOpaque(false);
     }
 
     public void populateAlltables() {
@@ -78,14 +84,21 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         System.out.println(this.manufactureEnterprise.getTopemployeeDirectory().getEmployeeList().toString());
         System.out.println(this.manufactureEnterprise.getTopemployeeDirectory().getworkerArrayList().toString());
-        for (Worker worker : this.manufactureEnterprise.getTopemployeeDirectory().getworkerArrayList()) {
-            if (worker.isWorkable()) {
-                Object[] row = new Object[2];
-                row[0] = worker;
-                row[1] = worker.getName();
-                model.addRow(row);
+//        for(Organization organization:this.manufactureEnterprise.getOrganizationDirectory().getOrganizationList()){
+//            
+//        }
+        for (Employee employee : this.productionOrganization.getEmployeeDirectory().getEmployeeList()) {
+            if (employee instanceof Worker) {
+                Worker worker = (Worker) employee;
+                if (worker.isWorkable() == true) {
+                    Object[] row = new Object[2];
+                    row[0] = worker;
+                    row[1] = worker.getName();
+                    model.addRow(row);
+                }
             }
         }
+
     }
 
     public void populatelinestable() {
@@ -98,8 +111,6 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
 
             model.addRow(row);
         }
-        
-        
 
     }
 
@@ -126,8 +137,9 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         checkjButton4 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        cheat = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         taskjTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -158,7 +170,7 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(taskjTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 650, 100));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 690, 100));
 
         workersAvaliavlejTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,7 +200,7 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(workersAvaliavlejTable2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 300, 110));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 280, 110));
 
         linesjTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,65 +230,72 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(linesjTable2);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 310, 110));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 310, 110));
 
+        assignBT.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         assignBT.setText("Assigns to ");
         assignBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignBTActionPerformed(evt);
             }
         });
-        add(assignBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 150, -1));
+        add(assignBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 100, -1));
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("<<Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
+        startjButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         startjButton2.setText("Start this Task");
         startjButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startjButton2ActionPerformed(evt);
             }
         });
-        add(startjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, 170, 40));
+        add(startjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 170, 30));
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Unstarted tasks:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 160, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("Workable worers:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 190, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("Lines:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 100, -1));
 
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Lines Detail");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, -1, -1));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, -1, -1));
 
         checkjButton4.setBackground(new java.awt.Color(153, 255, 255));
+        checkjButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         checkjButton4.setText("Check material for this task");
         checkjButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkjButton4ActionPerformed(evt);
             }
         });
-        add(checkjButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 200, 40));
+        add(checkjButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 200, 30));
 
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        cheat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                cheatActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 289, -1, 40));
+        add(cheat, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 10, 10));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -349,7 +368,7 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
                     }
 
                     JOptionPane.showMessageDialog(null, "launch the task successfully!");
-                    
+
                     for (Material material : product.getPeoductStructure().keySet()) {
                         int amountsavaliable = warehouse.getAvaliableMaterialHashMap().get(material);
                         int newamounts = amountsavaliable - product.getPeoductStructure().get(material) * amounts;
@@ -378,12 +397,16 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
 
     private void checkjButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkjButton4ActionPerformed
         // TODO add your handling code here:
-        int taskindex = taskjTable1.getSelectedRow();
+        System.out.println(this.manufactureEnterprise.getWarehouse().getAvaliableMaterialHashMap().toString());
+        try {
+                   int taskindex = taskjTable1.getSelectedRow();
         ManufactureTask task = (ManufactureTask) taskjTable1.getValueAt(taskindex, 0);
         Product product = (Product) taskjTable1.getValueAt(taskindex, 2);
+            System.out.println("prod "+product.getPeoductStructure());
+            System.out.println("prod2 "+product.getComponents().toString());
         int amounts = (int) taskjTable1.getValueAt(taskindex, 1);
         Warehouse warehouse = this.manufactureEnterprise.getWarehouse();
-        System.out.println(warehouse.getAvaliableMaterialHashMap().toString() +"12312321");
+        System.out.println(warehouse.getAvaliableMaterialHashMap().toString() + "12312321");
         //check the warehouse if there is enough material
         for (Material material : product.getPeoductStructure().keySet()) {
             if (!warehouse.getAvaliableMaterialHashMap().containsKey(material) || warehouse.getAvaliableMaterialHashMap().get(material) < product.getPeoductStructure().get(material) * amounts) {
@@ -391,40 +414,36 @@ public class MainCompanyManufactureTaskAssignPanel extends javax.swing.JPanel {
                 System.out.println("need:" + material.getNameString() + product.getPeoductStructure().get(material) * amounts);
 
                 JOptionPane.showMessageDialog(null, "sorry, not enough material, please let Purchase organization get materials first");
-                task.setIsCalculated(false);
-                this.manufactureEnterprise.getNeedMaterialTasks().add(task);
                 
+                task.setIsCalculated(false);
+                if(!this.manufactureEnterprise.getNeedMaterialTasks().contains(task)){
+                    this.manufactureEnterprise.getNeedMaterialTasks().add(task);
+                }                
                 return;
             }
         }
         JOptionPane.showMessageDialog(null, "There is enough material in warehouse!! ");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "please select a task ");
+        }
+ 
     }//GEN-LAST:event_checkjButton4ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void cheatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cheatActionPerformed
         // TODO add your handling code here:
-              int taskindex = taskjTable1.getSelectedRow();
-        ManufactureTask task = (ManufactureTask) taskjTable1.getValueAt(taskindex, 0);
-        Product product = (Product) taskjTable1.getValueAt(taskindex, 2);
-        int amounts = (int) taskjTable1.getValueAt(taskindex, 1);
-        Warehouse warehouse = this.manufactureEnterprise.getWarehouse();
-                for (Material material : product.getPeoductStructure().keySet()) {
-            
-                 warehouse.getAvaliableMaterialHashMap().put(material, product.getPeoductStructure().get(material) * 20);
-//                System.out.println("need:" + material.getNameString() + product.getPeoductStructure().get(material) * amounts);
-
-                JOptionPane.showMessageDialog(null, "sorry, not enough material, please let Purchase organization get materials first");
-//                return;
-            
+        for(Material material:this.materialDirectory.getMaterials()){
+            this.manufactureEnterprise.getWarehouse().getAvaliableMaterialHashMap().put(material, 1000);
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+         
+    }//GEN-LAST:event_cheatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignBT;
+    private javax.swing.JButton cheat;
     private javax.swing.JButton checkjButton4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

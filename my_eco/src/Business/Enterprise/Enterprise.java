@@ -7,7 +7,7 @@ package Business.Enterprise;
 
 import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.Entities.Factory;
-import Business.Enterprise.Entities.ProductDictory;
+import Business.Enterprise.Entities.ProductDirectory;
 import Business.Enterprise.Entities.Warehouse;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
@@ -22,15 +22,15 @@ public abstract class Enterprise extends Organization{
     private OrganizationDirectory organizationDirectory;
     private Warehouse warehouse ;
     private EmployeeDirectory topemployeeDirectory;
-    private ProductDictory productDictory;
+//    private ProductDictory productDictory;
 
-    public ProductDictory getProductDictory() {
-        return productDictory;
-    }
-
-    public void setProductDictory(ProductDictory productDictory) {
-        this.productDictory = productDictory;
-    }
+//    public ProductDictory getProductDictory() {
+//        return productDictory;
+//    }
+//
+//    public void setProductDictory(ProductDictory productDictory) {
+//        this.productDictory = productDictory;
+//    }
 
         public Enterprise(String name,EnterpriseType type){
         super(name);
@@ -38,7 +38,8 @@ public abstract class Enterprise extends Organization{
         organizationDirectory=new OrganizationDirectory();
         warehouse=new Warehouse("");
         topemployeeDirectory =new EmployeeDirectory();
-        productDictory = new ProductDictory();
+//        productDictory = new ProductDictory();
+        
     }
 
     public OrganizationDirectory getOrganizationDirectory() {

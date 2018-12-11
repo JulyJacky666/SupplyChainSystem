@@ -5,6 +5,10 @@
  */
 package Business.Organization;
 
+import Business.Enterprise.Entities.AddMaterialDictionary;
+import Business.Enterprise.Entities.Material;
+import Business.Enterprise.Entities.SupplierWarehouseDictionary;
+import java.util.HashMap;
 import Business.Enterprise.Entities.Factory;
 import Business.Enterprise.Entities.ManufactureTask;
 import Business.Enterprise.Entities.WorkLine;
@@ -19,12 +23,17 @@ import java.util.ArrayList;
  */
 public class WarehouseOrganization extends Organization {
     
-    
+    SupplierWarehouseDictionary supplierWarehouseDictionary;
+    AddMaterialDictionary addMaterialDictionary;
+    private HashMap<Material,Integer> avaliableMaterialHashMap;
    
     
     public WarehouseOrganization(){
         super(Type.WarehouseOrganization.getValue());
         this.setTypeString(Type.WarehouseOrganization.getValue());
+        supplierWarehouseDictionary = new SupplierWarehouseDictionary();
+        addMaterialDictionary  = new AddMaterialDictionary();
+        avaliableMaterialHashMap = new HashMap<Material,Integer>();
         
     }
 
@@ -36,6 +45,14 @@ public class WarehouseOrganization extends Organization {
 //        this.manufactureTasksdirectory = manufactureTasksdirectory;
 //    }
     
+ public HashMap<Material, Integer> getAvaliableMaterialHashMap() {
+        return avaliableMaterialHashMap;
+    }
+
+    public void setAvaliableMaterialHashMap(HashMap<Material, Integer> avaliableMaterialHashMap) {
+        this.avaliableMaterialHashMap = avaliableMaterialHashMap;
+    }
+    
 
 
     
@@ -43,8 +60,34 @@ public class WarehouseOrganization extends Organization {
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new WarehouserDirectorRole());
+        roles.add(new ManagerRole());
         return roles;
     }
+
+    public AddMaterialDictionary getAddMaterialDictionary() {
+        return addMaterialDictionary;
+    }
+
+    public void setAddMaterialDictionary(AddMaterialDictionary addMaterialDictionary) {
+        this.addMaterialDictionary = addMaterialDictionary;
+    }
+
+    
+    public SupplierWarehouseDictionary getSupplierWarehouseDictionary() {
+        return supplierWarehouseDictionary;
+    }
+
+    public void setSupplierWarehouseDictionary(SupplierWarehouseDictionary supplierWarehouseDictionary) {
+        this.supplierWarehouseDictionary = supplierWarehouseDictionary;
+    }
+
+    
+    
+//    @Override
+//    public ArrayList<Role> getSupportedRole() {
+//        ArrayList<Role> roles = new ArrayList();
+//        roles.add(new WarehouserDirectorRole());
+//        return roles;
+//    }
 
 }

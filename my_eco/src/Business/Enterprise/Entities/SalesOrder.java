@@ -19,8 +19,8 @@ public class SalesOrder {
     private static int counts = 1;
 //    private int number;
     private HashMap<Product, Integer> items;
-    private Boolean readyforproduction;
-    private Boolean completion;
+//    private Boolean readyforproduction;
+//    private Boolean completion;
     private int estimatedtime;
     private ArrayList<ManufactureTask> subManufactureTasks;
     private boolean iscalcutated;
@@ -29,6 +29,7 @@ public class SalesOrder {
     private boolean  isdeliveredtomanufac;
     private String destinationState;
     private boolean isEmergency;
+    private boolean isReadyToCustomer;
    
 //    private 
 
@@ -37,11 +38,12 @@ public class SalesOrder {
         counts++;
         this.items = new HashMap<Product, Integer>();
         this.price = new  HashMap<Product, Double>();
-        readyforproduction = false;
-        completion = false;
+//        readyforproduction = false;
+//        completion = false;
         this.iscalcutated = false;
         this.isdeliveredtomanufac= false;
         this.destinationState="";
+        this.isReadyToCustomer=false;
     }
     
     public String getDestinationState() {
@@ -87,6 +89,15 @@ public class SalesOrder {
         this.iscalcutated = iscalcutated;
     }
 
+    public boolean isIsReadyToCustomer() {
+        return isReadyToCustomer;
+    }
+
+    public void setIsReadyToCustomer(boolean isReadyToCustomer) {
+        this.isReadyToCustomer = isReadyToCustomer;
+    }
+    
+
     public boolean isIsdeliveredtomanufac() {
         return isdeliveredtomanufac;
     }
@@ -129,21 +140,21 @@ public class SalesOrder {
         this.estimatedtime = estimatedtime;
     }
 
-    public Boolean getReadyforproduction() {
-        return readyforproduction;
-    }
+//    public Boolean getReadyforproduction() {
+//        return readyforproduction;
+//    }
+//
+//    public void setReadyforproduction(Boolean readyforproduction) {
+//        this.readyforproduction = readyforproduction;
+//    }
 
-    public void setReadyforproduction(Boolean readyforproduction) {
-        this.readyforproduction = readyforproduction;
-    }
-
-    public Boolean getCompletion() {
-        return completion;
-    }
-
-    public void setCompletion(Boolean completion) {
-        this.completion = completion;
-    }
+//    public Boolean getCompletion() {
+//        return completion;
+//    }
+//
+//    public void setCompletion(Boolean completion) {
+//        this.completion = completion;
+//    }
     public Customer getCustomer() {
         return customer;
     }

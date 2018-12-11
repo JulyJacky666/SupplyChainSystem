@@ -13,7 +13,7 @@ import Business.Organization.Organization;
 import Business.Organization.SalesOrganization;
 import Business.UserAccount.UserAccount;
 import Interface.ProductionDirectorWorkArea.ProductionDirectorWorkAreaJPanel;
-import Interface.SalesOrganizationDirectorWorkArea.SalesEnterpriseDirectorWorkAreaJPanel;
+import Interface.SalesOrganizationDirectorWorkArea.SalesOrganizationDirectorWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -25,7 +25,7 @@ public class SalesOrganizationDirectorRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
 //        return new ManageAreaJPanel(userProcessContainer, account, (ManufactureOrganization)organization, enterprise);
-        return new SalesEnterpriseDirectorWorkAreaJPanel(userProcessContainer, (SalesEnterprise)enterprise, business.getAllManufactureEnterprises());
+        return new SalesOrganizationDirectorWorkAreaJPanel(userProcessContainer, organization,(SalesEnterprise)enterprise, business.getAllManufactureEnterprises());
         
 //    return userProcessContainer;
 

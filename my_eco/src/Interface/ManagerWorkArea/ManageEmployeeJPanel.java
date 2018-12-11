@@ -28,6 +28,7 @@ import Business.Role.WorkerRole;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,6 +56,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         populateOrganizationEmpComboBox();
         populateEmployeeRoleComBox();
         populateTable();
+        this.setOpaque(false);
     }
 
 //    public void populateOrganizationComboBox() {
@@ -71,7 +73,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             empRoleJComboBox.addItem("Worker");
             empRoleJComboBox.addItem("Production Director");
             empRoleJComboBox.addItem("Buyer");
-             empRoleJComboBox.addItem("Purchase Director");
+            empRoleJComboBox.addItem("Purchase Director");
         }
         if (this.enterprise instanceof SalesEnterprise) {
             empRoleJComboBox.addItem("Sales Organization Director");
@@ -102,13 +104,13 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Organization organization : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount useraccount : organization.getUserAccountDirectory().getUserAccountList()) {
-                Object[] row = new Object[6];
-                row[0] = useraccount.getEmployee().getId();
-                row[1] = useraccount.getEmployee().getHardOrg();
-                row[2] = useraccount.getEmployee().getHardRole();
-                row[3] = useraccount.getEmployee().getName();
-                row[4] = useraccount.getUsername();
-                row[5] = useraccount.getPassword();
+                Object[] row = new Object[5];
+//                row[0] = useraccount.getEmployee().getId();
+                row[0] = useraccount.getEmployee().getHardOrg();
+                row[1] = useraccount.getEmployee().getHardRole();
+                row[2] = useraccount.getEmployee().getName();
+                row[3] = useraccount.getUsername();
+                row[4] = useraccount.getPassword();
                 model.addRow(row);
             }
         }
@@ -139,24 +141,25 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         PasswordField = new javax.swing.JPasswordField();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Org", "Role", "Name", "User Name", "User Passwd"
+                "Org", "Role", "Name", "User Name", "User Passwd"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -169,52 +172,72 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(organizationJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 67, 480, 92));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 660, 140));
 
+        addJButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         addJButton.setText("Create Employee");
         addJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, 40));
 
+        backJButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 328, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         jLabel2.setText("Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
-        add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 126, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, 30));
 
+        nameJTextField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 126, -1));
+
+        organizationEmpJComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         organizationEmpJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(organizationEmpJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 190, 126, -1));
+        organizationEmpJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationEmpJComboBoxActionPerformed(evt);
+            }
+        });
+        add(organizationEmpJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 150, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         jLabel3.setText("Organization");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 194, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, 20));
 
+        empRoleJComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         empRoleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         empRoleJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 empRoleJComboBoxActionPerformed(evt);
             }
         });
-        add(empRoleJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 126, -1));
+        add(empRoleJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 150, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         jLabel4.setText("Role as:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, 30));
 
-        jLabel5.setText("Usr Name:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, -1, -1));
-        add(usernameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 126, -1));
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        jLabel5.setText("User Name");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, 30));
 
+        usernameJTextField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        add(usernameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 126, -1));
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         jLabel6.setText("PassWord");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
-        add(PasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 120, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, 30));
+
+        PasswordField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        add(PasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
@@ -261,8 +284,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 number = 8;
                 role = new BuyerRole();
                 break;
-                
-                            case "Purchase Director":
+
+            case "Purchase Director":
                 number = 9;
                 role = new PurchaseDirectorRole();
                 break;
@@ -285,20 +308,25 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 break;
 
         }
+        for(Employee employee:organization.getEmployeeDirectory().getEmployeeList()){
+            if(employee.getName().equals(name)){
+                JOptionPane.showMessageDialog(null, "please input another name");
+                return;
+            }
+        }
         Employee employee = organization.getEmployeeDirectory().createEmployee(name, number);
         UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
 //        enterprise.getTopemployeeDirectory().getEmployeeList().add(employee);
 //        enterprise.getUserAccountDirectory().getUserAccountList().add(userAccount);
-        System.out.println(organization.getName()+"create" + employee.getName() +employee.getHardRole());
+        System.out.println(organization.getName() + "create" + employee.getName() + employee.getHardRole());
 //        System.out.println(this.enterprise.getOrganizationDirectory());
         System.out.println("______");
-        for(Organization organization1:this.enterprise.getOrganizationDirectory().getOrganizationList()){
-            for(UserAccount userAccount1:organization1.getUserAccountDirectory().getUserAccountList()){
-                System.out.println(this.enterprise.getName()+organization.getName()+userAccount1.getUsername() +"jikewei");
+        for (Organization organization1 : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount userAccount1 : organization1.getUserAccountDirectory().getUserAccountList()) {
+                System.out.println(this.enterprise.getName() + organization.getName() + userAccount1.getUsername() + "jikewei");
             }
         }
         populateTable();
-
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -311,6 +339,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void empRoleJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empRoleJComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_empRoleJComboBoxActionPerformed
+
+    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PasswordField;

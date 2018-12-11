@@ -7,9 +7,11 @@ package Interface.ProductionDirectorWorkArea;
 
 import Business.Employee.Worker;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Entities.MaterialDirectory;
 import Business.Enterprise.Entities.WorkLine;
 import Business.Enterprise.ManufactureEnterprise;
 import Business.Enterprise.SalesEnterprise;
+import Business.Organization.Organization;
 import Business.Organization.ProductOrganization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -24,17 +26,20 @@ public class ProductionDirectorWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private ManufactureEnterprise manufactureEnterprise;
     private ProductOrganization manufactureOrganization;
+    private MaterialDirectory materialDirectory;
 
     /**
      * Creates new form ManufactureDirectorWorkAreaJPanel
      */
-    public ProductionDirectorWorkAreaJPanel(JPanel userProcessContainer, ProductOrganization manufactureOrganization, Enterprise enterprise) {
+    public ProductionDirectorWorkAreaJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, MaterialDirectory materialDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.manufactureEnterprise = (ManufactureEnterprise) enterprise;
-        this.manufactureOrganization = manufactureOrganization;
+        this.manufactureOrganization = (ProductOrganization) organization;
+        this.materialDirectory = materialDirectory;
         System.out.println(enterprise.getName());
         populatetables();
+        this.setOpaque(false);
     }
 
     public void populatetables() {
@@ -106,31 +111,35 @@ public class ProductionDirectorWorkAreaJPanel extends javax.swing.JPanel {
         line1number = new javax.swing.JLabel();
         line2number = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        assignmentjButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         assignmentjButton1.setText("Assignment Placement");
         assignmentjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignmentjButton1ActionPerformed(evt);
             }
         });
-        add(assignmentjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 234, 30));
+        add(assignmentjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 190, 40));
 
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("Manage leave offs");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 240, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 190, 40));
 
+        jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("Create Manufacture Task");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 240, -1));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 190, 40));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Factory Detail"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -163,16 +172,16 @@ public class ProductionDirectorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 280, 70));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 280, 70));
 
         jLabel1.setText("Line 3");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         jLabel2.setText("Line 1");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
         jLabel3.setText("Line 2");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
         jTable0.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,7 +211,7 @@ public class ProductionDirectorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable0);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 280, 70));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 280, 70));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -232,18 +241,18 @@ public class ProductionDirectorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 280, 70));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 280, 70));
 
         line3number.setText("Vacant place: xx");
-        jPanel1.add(line3number, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, 30));
+        jPanel1.add(line3number, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, 30));
 
         line1number.setText("Vacant place: xx");
-        jPanel1.add(line1number, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, 30));
+        jPanel1.add(line1number, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, 30));
 
         line2number.setText("Vacant place: xx");
-        jPanel1.add(line2number, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, 30));
+        jPanel1.add(line2number, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 680, 270));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 510, 290));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignmentjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignmentjButton1ActionPerformed
@@ -255,7 +264,7 @@ public class ProductionDirectorWorkAreaJPanel extends javax.swing.JPanel {
 //            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
 //            layout.next(userProcessContainer);
 //        }
-        MainCompanyManufactureTaskAssignPanel mainCompanyManufactureTaskAssignPanel = new MainCompanyManufactureTaskAssignPanel(userProcessContainer, manufactureEnterprise);
+        MainCompanyManufactureTaskAssignPanel mainCompanyManufactureTaskAssignPanel = new MainCompanyManufactureTaskAssignPanel(userProcessContainer, manufactureOrganization, manufactureEnterprise,materialDirectory);
 
         userProcessContainer.add("manageOrganizationJPanel", mainCompanyManufactureTaskAssignPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -264,7 +273,7 @@ public class ProductionDirectorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-                userProcessContainer.add("manageOrganizationJPanel", new ManageLeaveOffJPanel(userProcessContainer, manufactureEnterprise));
+        userProcessContainer.add("manageOrganizationJPanel", new ManageLeaveOffJPanel(userProcessContainer, manufactureEnterprise));
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed

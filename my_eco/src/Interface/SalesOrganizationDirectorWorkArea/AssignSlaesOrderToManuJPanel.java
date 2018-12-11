@@ -15,6 +15,7 @@ import Business.Enterprise.SalesEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.ProductOrganization;
 import Business.Organization.SalesOrganization;
+import java.awt.CardLayout;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -43,6 +44,7 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
 //          System.out.println(this.salesOrganization.getName()+111);
         populateorderstable();
         populatemanus();
+        this.setOpaque(false);
 
     }
 
@@ -51,12 +53,12 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (SalesOrder salesOrder : this.salesEnterprise.getSalesOrdersDirectoryArrayList()) {
             if (salesOrder.isIsdeliveredtomanufac() == false) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[4];
                 row[0] = salesOrder;
-                row[1] = String.valueOf(salesOrder.isIsEmergency());
-                row[2] = salesOrder.getCustomer().getName();
-                row[3] = salesOrder.getDestinationState();
-                row[4] = salesOrder.getItems().size();
+//                row[1] = String.valueOf(salesOrder.isIsEmergency());
+                row[1] = salesOrder.getCustomer().getName();
+                row[2] = salesOrder.getDestinationState();
+                row[3] = salesOrder.getItems().size();
 
                 model.addRow(row);
             }
@@ -128,26 +130,27 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         manusjTable2 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ordersjTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Order id", "Emergency", "Customer Name", "Destination", "Amount of Items"
+                "Order id", "Customer Name", "Destination", "Amount of Items"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -160,7 +163,7 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ordersjTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 520, 130));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 520, 130));
 
         manusjTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,18 +193,25 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(manusjTable2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 520, 150));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 520, 150));
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Deliver the selected order to selected Manu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 320, 40));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 320, 40));
 
-        jButton2.setText("Show details");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, -1, -1));
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton3.setText("<<back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -218,10 +228,17 @@ public class AssignSlaesOrderToManuJPanel extends javax.swing.JPanel {
         populatemanus();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+                        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable manusjTable2;

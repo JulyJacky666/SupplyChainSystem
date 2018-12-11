@@ -37,6 +37,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         populateTable();
         populateCombo();
+        this.setOpaque(false);
     }
 
     private void populateCombo() {
@@ -93,6 +94,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         namejTextField1 = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -127,15 +129,16 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             organizationJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 60, 480, 92));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 92, 480, 110));
 
+        backJButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, -1, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Creat a new Org"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -169,7 +172,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(namejTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 170, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 340, 150));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 480, 150));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed

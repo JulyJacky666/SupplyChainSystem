@@ -10,6 +10,7 @@ import Business.Employee.Salesman;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Entities.Product;
 import Business.Enterprise.Entities.SalesOrder;
+import Business.Enterprise.SalesEnterprise;
 import Business.Organization.SalesOrganization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -27,15 +28,17 @@ public class OrderLisitJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private SalesOrganization organization;
-    private Enterprise enterprise;
+    private SalesEnterprise enterprise;
     private UserAccount userAccount;
-    public OrderLisitJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, Enterprise enterprise) {
+    public OrderLisitJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, SalesEnterprise enterprise) {
         initComponents();
+        this.setOpaque(false);
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
         populateTable();
+        this.setOpaque(false);
     }
 
     /**
@@ -51,6 +54,8 @@ public class OrderLisitJPanel extends javax.swing.JPanel {
         OrderjTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
+
         OrderjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -64,6 +69,7 @@ public class OrderLisitJPanel extends javax.swing.JPanel {
             OrderjTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("<<back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,23 +82,20 @@ public class OrderLisitJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(136, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(99, 99, 99)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(jButton1)
-                .addGap(81, 81, 81))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

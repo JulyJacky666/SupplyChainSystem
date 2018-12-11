@@ -5,12 +5,13 @@
  */
 package Interface.BuyerWorkArea;
 
+import Business.Employee.Buyer;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.ManufactureEnterprise;
 import Business.Enterprise.SupplierEnterprise;
 import Business.Organization.PurchaseOrganization;
 import Business.UserAccount.UserAccount;
-import Interface.BuyOrganizationDirectorWorkArea.BuyOrderAssignsJPanel;
+//import Interface.BuyOrganizationDirectorWorkArea.BuyOrderAssignsJPanel;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +41,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         this.manufactureEnterprise = (ManufactureEnterprise)enterprise;
         this.manufactureEnterprises = manufactureEnterprises;
         this.supplierEnterprises = supplierEnterprises;
+        this.setOpaque(false);
     }
 
     /**
@@ -52,41 +54,29 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jButton1.setText("Excute Task");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 230, 45));
-
-        jButton2.setText(" Tasks history");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 230, 40));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 230, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                        userProcessContainer.add("manageOrganizationJPanel", new BuyOrderAssignsJPanel(userProcessContainer, manufactureEnterprise, manufactureEnterprise));
+                        userProcessContainer.add("manageOrganizationJPanel", new MakeAnOrderPanel(userProcessContainer,(Buyer)userAccount.getEmployee(),manufactureEnterprise,manufactureEnterprises,supplierEnterprises));
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }

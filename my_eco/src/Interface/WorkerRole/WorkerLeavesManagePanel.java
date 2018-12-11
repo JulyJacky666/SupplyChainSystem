@@ -33,6 +33,7 @@ public class WorkerLeavesManagePanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.worker = worker;
         populatetable();
+        this.setOpaque(false);
     }
 
     public void populatetable() {
@@ -71,20 +72,23 @@ public class WorkerLeavesManagePanel extends javax.swing.JPanel {
         backjButton1 = new javax.swing.JButton();
         submitjButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jLabel1.setText("Leaves days:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
-        add(daysjTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 110, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
+        add(daysjTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 110, 20));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jLabel2.setText("Reason:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 300, 70, -1));
 
         reasonjTextArea1.setColumns(20);
         reasonjTextArea1.setRows(5);
         jScrollPane1.setViewportView(reasonjTextArea1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 390, 70));
 
         leavesTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,13 +118,15 @@ public class WorkerLeavesManagePanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(leavesTable1);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 420, 90));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 490, 110));
 
-        jLabel3.setText("History:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setText("History");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel4.setText("Apply for a new workoff");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
 
         backjButton1.setText("back");
         backjButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +134,7 @@ public class WorkerLeavesManagePanel extends javax.swing.JPanel {
                 backjButton1ActionPerformed(evt);
             }
         });
-        add(backjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
+        add(backjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, -1, -1));
 
         submitjButton2.setText("Submit");
         submitjButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +142,7 @@ public class WorkerLeavesManagePanel extends javax.swing.JPanel {
                 submitjButton2ActionPerformed(evt);
             }
         });
-        add(submitjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, -1, -1));
+        add(submitjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed

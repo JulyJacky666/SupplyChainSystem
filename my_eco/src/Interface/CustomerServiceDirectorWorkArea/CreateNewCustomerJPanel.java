@@ -42,6 +42,7 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
         this.areaList =areaList;
         populatebox();
         populatetable();
+        this.setOpaque(false);
     }
 
     /**
@@ -53,10 +54,10 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
         DefaultTableModel model =(DefaultTableModel)customertable.getModel();
         model.setRowCount(0);
         for(Customer customer:this.salesEnterprise.getCustomerDirectory().getCustomerDict()){
-            Object[] row = new Object[3];
-            row[0]=customer.getId();
-            row[1] = customer;
-            row[2] = customer.getAddress();
+            Object[] row = new Object[2];
+//            row[0]=customer.getId();
+            row[0] = customer;
+            row[1] = customer.getAddress();
             model.addRow(row);
         }
         
@@ -82,49 +83,52 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         locationJComboBox = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Batang", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Batang", 1, 36)); // NOI18N
         jLabel1.setText("Create New Customers");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 29, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setText("Location:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, 20));
 
         CustomerNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CustomerNameTextFieldActionPerformed(evt);
             }
         });
-        add(CustomerNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 143, -1));
+        add(CustomerNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 143, -1));
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Create");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 140, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 140, 30));
 
+        BackjButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         BackjButton.setText("<<Back");
         BackjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackjButtonActionPerformed(evt);
             }
         });
-        add(BackjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
+        add(BackjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
         customertable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Customer Id", "Customer Name", "Location"
+                "Customer Name", "Location"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -133,14 +137,15 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(customertable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, 110));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 510, 160));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setText("Customer Name:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, -1));
 
+        locationJComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         locationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(locationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 140, -1));
+        add(locationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void CustomerNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerNameTextFieldActionPerformed
@@ -152,6 +157,7 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
 
         Area area = (Area)locationJComboBox.getSelectedItem();
         Customer c = this.salesEnterprise.getCustomerDirectory().addCustomer();
+        area.getCustomerDirectory().getCustomerDict().add(c);
         c.setName(CustomerNameTextField.getText());
         c.setAddress(area.getName());
         CustomerNameTextField.setText("");

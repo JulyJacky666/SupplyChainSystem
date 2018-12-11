@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Material {
     
     private String nameString;
-    private int price;
+    private double price;
    private HashMap<Material,Integer> sub_materials;
    
    public Material(String name,HashMap<Material,Integer> sub_materials){
@@ -23,7 +23,9 @@ public class Material {
        this.sub_materials = sub_materials;
    }
    
-   
+   public Material(){
+       
+   }
     
 //    public enum RawMaterial{
 //        Legs("Legs"),
@@ -45,11 +47,11 @@ public class Material {
         this.nameString = nameString;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
         public HashMap<Material, Integer> getMaterialStructure(){

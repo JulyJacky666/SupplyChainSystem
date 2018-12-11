@@ -36,7 +36,7 @@ public class ManufactureTask {
         this.excuted = false;
         this.completed = false;
         this.hasexperincedDays = 0;
-        this.timeremains = Integer.MAX_VALUE;
+        this.timeremains = product.getAssembletime() * counts;
         this.createdtimeDate = new Date();
         this.menTakePartIn = new ArrayList<Worker>();
         this.iscalculated=true;
@@ -52,7 +52,7 @@ public class ManufactureTask {
     }
 
     public double calculateTimeRemains() {
-        double remains = Double.POSITIVE_INFINITY;
+        double remains = this.getTimeremains();
         if (this.getMenTakePartIn().size() > 0) {
             double totaltime = this.product.getAssembletime() * this.getCounts() / this.getMenTakePartIn().size();
             remains = totaltime - this.hasexperincedDays;

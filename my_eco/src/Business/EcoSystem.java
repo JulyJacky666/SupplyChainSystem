@@ -7,6 +7,7 @@ package Business;
 
 import Business.Area.Area;
 import Business.Enterprise.Entities.ManufactureTask;
+import Business.Enterprise.Entities.MaterialDirectory;
 import Business.Enterprise.ManufactureEnterprise;
 import Business.Enterprise.SalesEnterprise;
 import Business.Enterprise.SupplierEnterprise;
@@ -31,7 +32,8 @@ public class EcoSystem extends Organization {
     private ArrayList<Area> areaList;
     private HashMap<ManufactureEnterprise,String> allManufactureEnterprises; //String only record which area this enterprise belongs to
     private HashMap<SalesEnterprise,String> allSalesEnterprises;
-    private HashMap<SupplierEnterprise,String> allSupplierEnterprises; 
+    private HashMap<SupplierEnterprise,String> allSupplierEnterprises;
+    private MaterialDirectory materialDirectory;
 
     public static EcoSystem getInstance() {
         if (business == null) {
@@ -59,6 +61,7 @@ public class EcoSystem extends Organization {
         allManufactureEnterprises = new HashMap<ManufactureEnterprise,String>();
         allSalesEnterprises = new HashMap<SalesEnterprise,String>();
         allSupplierEnterprises = new HashMap<SupplierEnterprise,String>();
+        materialDirectory = new MaterialDirectory();
 //        flushall();
     }
     
@@ -78,6 +81,8 @@ public class EcoSystem extends Organization {
         timer.start();
 
     }
+        
+        
 
     public void flushManufacturetask() {
         
@@ -137,6 +142,15 @@ public class EcoSystem extends Organization {
     public void setAreaList(ArrayList<Area> arealist) {
         this.areaList = arealist;
     }
+
+    public MaterialDirectory getMaterialDirectory() {
+        return materialDirectory;
+    }
+
+    public void setMaterialDirectory(MaterialDirectory materialDirectory) {
+        this.materialDirectory = materialDirectory;
+    }
+    
 
     public boolean checkIfUserIsUnique(String userName) {
         if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {

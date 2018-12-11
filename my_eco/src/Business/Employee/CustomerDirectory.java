@@ -32,12 +32,12 @@ public class CustomerDirectory {
         customers.remove(s);
     }
     
-    public Customer searchAirliners(String keyWord) {
-        for(Customer s : customers) {
-            if(keyWord.equals(s.getName())) {
-                return s;
-            }
-        }
-        return null;
-    }
+//    public Customer searchAirliners(String keyWord) {
+//        for(Customer s : customers) {
+//            if(keyWord.equals(s.getName())) {
+//                return s;
+//            }
+//        }
+//        return null;
+//    }
 }

@@ -30,9 +30,9 @@ public class Product {
         this.assembletime = assembletime;
         this.salesprice = this.price;
     }
-    
-     public Product(){
-        
+
+    public Product() {
+
     }
 
     public int getID() {
@@ -42,29 +42,31 @@ public class Product {
     public void setID(int ID) {
         this.ID = ID;
     }
-    
+
     public Product(ProductType productType, MaterialDirectory materialDirectory) {
         if (productType == productType.Bike) {
             components = new HashMap<Material, Integer>();
 //              components.push
             ArrayList<Material> materials = materialDirectory.getMaterials();
             for (Material material : materials) {
-                if (material.getNameString() == "Handlebars" || material.getNameString() == "Frame Assembly" || material.getNameString() == "Seat") {
+                if (material.getNameString() .equals("Handlebars") || material.getNameString().equals("Frame Assembly")  || material.getNameString().equals("Seat"))  {
                     components.put(material, 1);
                 }
-//            switch(material.getNameString()){
-//                case "Handlebars":
-//                    components.put(material,1); 
-//                    break;
-//                case "Frame Assembly":
-//                                        components.put(material,1); 
-//                    break;
-//            }
             }
-
         }
+        if (productType == productType.Motor) {
+            components = new HashMap<Material, Integer>();
+//              components.push
+            ArrayList<Material> materials = materialDirectory.getMaterials();
+            for (Material material : materials) {
+if (material.getNameString() .equals("Handlebars") || material.getNameString().equals("Frame Assembly")  || material.getNameString().equals("Seat"))  {
+                    components.put(material, 2);
+                }
+            }
+        }
+
         this.nameString = productType.name;
-        this.price = price;
+        this.price = productType.price;
         this.components = components;
         this.assembletime = productType.days;
     }
@@ -76,10 +78,10 @@ public class Product {
     public void setSalesprice(int salesprice) {
         this.salesprice = salesprice;
     }
-    
 
     public enum ProductType {
-        Bike("Bike", 120, 10);
+        Bike("Bike", 120, 5),
+        Motor("Motor", 540, 7);
 
         private String name;
         private int price;
@@ -108,29 +110,30 @@ public class Product {
         }
 
     }
-    
-    public HashMap<Material, Integer> getPeoductStructure(){
+
+    public HashMap<Material, Integer> getPeoductStructure() {
         HashMap<Material, Integer> map = this.getComponents();
-         HashMap<Material, Integer> ret = new HashMap<Material, Integer>();
-        for(Material material:map.keySet()){
+        HashMap<Material, Integer> ret = new HashMap<Material, Integer>();
+        for (Material material : map.keySet()) {
             int number = map.get(material);
             helper(material, number, ret);
-    }
+        }
         System.out.println(ret.toString());
         return ret;
     }
-    public HashMap<Material,Integer> helper(Material material,int numbers_from_father,HashMap<Material,Integer> ret ){
+
+    public HashMap<Material, Integer> helper(Material material, int numbers_from_father, HashMap<Material, Integer> ret) {
 //        arry.add(material.getNameString());
-        if(material.getSub_materials().isEmpty()){
-            ret.put(material, numbers_from_father );
+        if (material.getSub_materials().isEmpty()) {
+            ret.put(material, numbers_from_father);
             return ret;
         }
-        if(!material.getSub_materials().isEmpty()){
+        if (!material.getSub_materials().isEmpty()) {
             HashMap<Material, Integer> subMap = material.getSub_materials();
-            for(Material sub_material:subMap.keySet()){
+            for (Material sub_material : subMap.keySet()) {
 //                 ret.put(material, numbers_from_father );
                 int number = subMap.get(sub_material) * numbers_from_father;
-                helper(sub_material, number,ret );
+                helper(sub_material, number, ret);
             }
         }
         return ret;
@@ -167,14 +170,14 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
-    
-    public static void main(String[] args) {
-        MaterialDirectory materialDirectory = new MaterialDirectory();
-        Product product  = new Product(ProductType.Bike, materialDirectory);
-        product.getPeoductStructure();
-    }
+
+//    public static void main(String[] args) {
+////        MaterialDirectory materialDirectory = new MaterialDirectory();
+//        Product product  = new Product(ProductType.Bike, new MaterialDirectory());
+//        product.getPeoductStructure();
+//    }
     @Override
-    public  String toString(){
+    public String toString() {
         return this.nameString;
     }
 }

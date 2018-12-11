@@ -7,6 +7,9 @@ package Interface.SalesmanWorkarea;
 
 import Business.Area.Area;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Entities.MaterialDirectory;
+import Business.Enterprise.Entities.Product;
+import Business.Enterprise.SalesEnterprise;
 import javax.swing.JPanel;
 import Business.Organization.SalesOrganization;
 import Business.UserAccount.UserAccount;
@@ -26,19 +29,35 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private SalesOrganization organization;
-    private Enterprise enterprise;
+    private SalesEnterprise salesEnterprise;
     private UserAccount userAccount;
     private ArrayList<Area> areaarrayList;
+    private MaterialDirectory materialDirectory;
     
-    public SalesmanWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, Enterprise enterprise, ArrayList<Area> areaarrayList) {
+    public SalesmanWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesOrganization organization, Enterprise enterprise, ArrayList<Area> areaarrayList,MaterialDirectory materialDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
-        this.enterprise = enterprise;
+        this.salesEnterprise = (SalesEnterprise)enterprise;
         this.userAccount = account;
         this.areaarrayList = areaarrayList;
         valueLabel.setText(account.getUsername());
+        this.materialDirectory = materialDirectory;
+        check();
+        this.setOpaque(false);
         
+    }
+    
+    public void check(){
+        System.out.println(this.materialDirectory.getMaterials().isEmpty());
+        this.salesEnterprise.getProductDictory().getProductsDict().clear();
+        if(this.salesEnterprise.getProductDictory().getProductsDict().isEmpty()){
+            Product product = new Product(Product.ProductType.Bike, materialDirectory);
+            this.salesEnterprise.getProductDictory().getProductsDict().add(product);
+            Product product2 = new Product(Product.ProductType.Motor, materialDirectory);
+            this.salesEnterprise.getProductDictory().getProductsDict().add(product2);
+        }
+        System.out.println(this.salesEnterprise.getProductDictory().getProductsDict().size());
     }
 
     /**
@@ -55,11 +74,15 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 12)); // NOI18N
+        setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         jLabel1.setText("Hello,");
 
+        valueLabel.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         valueLabel.setText("valueLabel");
 
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jButton2.setText("Create A Order");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +90,7 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         jButton3.setText("Order List");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,29 +103,31 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(276, 276, 276)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(valueLabel)
-                        .addGap(228, 228, 228)))
-                .addContainerGap(378, Short.MAX_VALUE))
+                        .addComponent(valueLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(136, 136, 136)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(valueLabel))
-                .addGap(114, 114, 114)
+                .addGap(12, 12, 12)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -109,7 +135,7 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("ManagementCustomers", 
-                new CreatAOrderJPanel(userProcessContainer,userAccount,organization,enterprise,areaarrayList));
+                new CreatAOrderJPanel(userProcessContainer,userAccount,organization,salesEnterprise,areaarrayList,materialDirectory));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -117,7 +143,7 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("ManagementCustomers", 
-                new OrderLisitJPanel(userProcessContainer,userAccount,organization,enterprise));
+                new OrderLisitJPanel(userProcessContainer,userAccount,organization,salesEnterprise));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
 

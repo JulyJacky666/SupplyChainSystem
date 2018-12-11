@@ -45,10 +45,17 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         this.manufactureEnterprise = (ManufactureEnterprise) enterprise;
         this.todoproducts = new HashMap<Product, Integer>();
         this.productsInWarehouse = this.manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap();
-        this.materialInWarehouse = new HashMap<Material, Integer>();
+        this.materialInWarehouse = this.manufactureEnterprise.getWarehouse().getAvaliableMaterialHashMap();
         System.out.println(manufactureEnterprise.getName());
 //        this.tobuyproducts = new HashMap<Product,Integer>();
+//clearwarehouse();
         populateall();
+        this.setOpaque(false);
+        
+    }
+    public void clearwarehouse(){
+        this.manufactureEnterprise.getWarehouse().getAvaliableMaterialHashMap().clear();
+        this.manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap().clear();
     }
 
     public void populateall() {
@@ -101,14 +108,14 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = product.getNameString();
             row[1] = avaliavleproducts.get(product);
-            this.productsInWarehouse.put(product, avaliavleproducts.get(product));
+//            this.productsInWarehouse.put(product, avaliavleproducts.get(product));
             model.addRow(row);
         }
         for (Material material : avaliavlematerials.keySet()) {
             Object[] row = new Object[2];
             row[0] = material.getNameString();
             row[1] = avaliavlematerials.get(material);
-            this.materialInWarehouse.put(material, avaliavlematerials.get(material));
+//            this.materialInWarehouse.put(material, avaliavlematerials.get(material));
             model.addRow(row);
         }
 
@@ -135,6 +142,7 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         warehousejTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -165,7 +173,7 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(warehousejTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 200, 200));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 600, 110));
 
         salesOrderjTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,21 +203,24 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(salesOrderjTable2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 260, 200));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 600, 130));
 
-        jLabel1.setText("Ware House:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 100, -1));
+        jLabel1.setFont(new java.awt.Font("Lao MN", 1, 15)); // NOI18N
+        jLabel1.setText("Ware House");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 100, 20));
 
-        jLabel2.setText("These tasks need materials to start:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 200, -1));
+        jLabel2.setFont(new java.awt.Font("Lao MN", 1, 15)); // NOI18N
+        jLabel2.setText("These tasks need materials to start");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 270, 20));
 
+        calculatejButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         calculatejButton1.setText("One clik to calculate all!! ");
         calculatejButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calculatejButton1ActionPerformed(evt);
             }
         });
-        add(calculatejButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 180, 40));
+        add(calculatejButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 200, 30));
 
         taskjTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -239,18 +250,20 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(taskjTable3);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, 100));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 600, 100));
 
-        jLabel3.setText("Buy tasks:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 70, -1));
+        jLabel3.setFont(new java.awt.Font("Lao MN", 1, 15)); // NOI18N
+        jLabel3.setText("Buy tasks");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 100, 20));
 
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("<<back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -284,12 +297,13 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
 //                hashMap.put(material, components_number);
             }
         }
+        System.out.println("ret_temp"+ret_temp.toString());
 
         for (Material material : ret_temp.keySet()) {
 
-            if (materialInWarehouse.containsKey(material)) {
+            if (this.materialInWarehouse.containsKey(material)) {
                 int material_need_number = ret_temp.get(material);
-                int material_avaliable = materialInWarehouse.get(material);
+                int material_avaliable = this.manufactureEnterprise.getWarehouse().getAvaliableMaterialHashMap().get(material);
 //                material_need_number = material_need_number < material_avaliable? 0:material_need_number - material_avaliable;
 //                ret_temp.put(material, material_need_number);
 //                this.manufactureEnterprise.getTodomaterialHashMap().put(material, WIDTH)
@@ -300,6 +314,8 @@ public class BuyingOrderCalculattionPanel extends javax.swing.JPanel {
                 }else{
                      this.manufactureEnterprise.getTodomaterialHashMap().put(material,tobuy);
                 }
+            }else{
+                this.manufactureEnterprise.getTodomaterialHashMap().put(material,ret_temp.get(material));
             }
         }
 

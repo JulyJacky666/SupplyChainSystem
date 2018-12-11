@@ -11,8 +11,11 @@ import Business.Area.Area;
 import Business.Employee.Employee;
 import Business.Employee.Worker;
 import Business.Enterprise.Entities.ManufactureTask;
+import Business.Enterprise.Entities.Product;
+import Business.Enterprise.Entities.SalesOrder;
 import Business.Enterprise.Entities.WorkLine;
 import Business.Enterprise.ManufactureEnterprise;
+import Business.Enterprise.SalesEnterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -26,6 +29,13 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
 
 /**
  *
@@ -38,14 +48,40 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-
+//    private JFrame frame = new JFrame("backgrounds");
+//    private JPanel imagePanel;
+//    private ImageIcon backgroud;
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         showtime();
         refreshAll();
-        this.setSize(1000, 1000);
-    
+        this.setSize(888, 550);
+        
+//        initstate();
+
+    }
+    public void initstate(){
+        for(Area area:this.system.getAreaList()){
+        for(Enterprise enterprise: area.getEnterpriseDirectory().getEnterpriseList()){
+            if(enterprise instanceof  ManufactureEnterprise){
+                ManufactureEnterprise manufactureEnterprise = (ManufactureEnterprise) enterprise;
+                manufactureEnterprise.getBuyOrdersdirectory().clear();
+                manufactureEnterprise.getManufactureTasksdirectory().clear();
+                manufactureEnterprise.getNeedMaterialTasks().clear();
+                manufactureEnterprise.getNeedMaterialTasks().clear();
+                manufactureEnterprise.getReceivedOrders().clear();
+                manufactureEnterprise.getTodomaterialHashMap().clear();
+                
+            }if (enterprise instanceof  SalesEnterprise){
+                SalesEnterprise salesEnterprise = (SalesEnterprise) enterprise;
+                salesEnterprise.getSalesOrdersDirectoryArrayList().clear();
+//                salesEnterprise.ge
+            }
+            
+            
+        }
+    }
     }
 
     public void showtime() {
@@ -74,8 +110,8 @@ public class MainJFrame extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 flushManufactureEnterpriseTasks();
                 flushManufactureEnterpriseWorkers();
-                System.out.println("Refresh at "+new SimpleDateFormat("HH:mm:ss").format(new Date()));
-                
+                System.out.println("Refresh at " + new SimpleDateFormat("HH:mm:ss").format(new Date()));
+
             }
         });
         timer.setRepeats(true);
@@ -97,6 +133,21 @@ public class MainJFrame extends javax.swing.JFrame {
 //            }
             // to add all flush task status
             for (ManufactureTask task : manufactureEnterprise.getManufactureTasksdirectory()) {
+
+                for (SalesOrder order : manufactureEnterprise.getReceivedOrders()) {
+                    if (order.isIsReadyToCustomer() == false) {
+
+                        for (Product product : order.getItems().keySet()) {
+                            if (!manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap().containsKey(product) || order.getItems().get(product) > manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap().get(product)) {
+//                                break;
+                                order.setIsReadyToCustomer(false);
+                                break;
+                            } else {
+                                order.setIsReadyToCustomer(true);
+                            }
+                        }
+                    }
+                }
                 if (task.getCompleted() == false && task.getTimeremains() > 0 && task.getStarteproductionDate() != null) {
                     long diff = new Date().getTime() - task.getStarteproductionDate().getTime();
 
@@ -115,6 +166,16 @@ public class MainJFrame extends javax.swing.JFrame {
                 if (task.getCompleted() == false && task.getTimeremains() <= 0) {
                     task.setTimeremains(0);
                     task.setCompleted(Boolean.TRUE);
+
+//                    for(manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap();
+                    if (!manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap().containsKey(task.getProduct())) {
+                        manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap().put(task.getProduct(), task.getCounts());
+                    } else {
+                        int abaliablnumber = manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap().get(task.getProduct());
+                        abaliablnumber = abaliablnumber + task.getCounts();
+                        manufactureEnterprise.getWarehouse().getAvaliableProductsHashMap().put(task.getProduct(), abaliablnumber);
+                    }
+
                     for (Worker worker : task.getMenTakePartIn()) {
                         worker.setWorkable(Boolean.TRUE);
                         for (WorkLine workline : manufactureEnterprise.getFactory().getWorklines()) {
@@ -198,9 +259,22 @@ public class MainJFrame extends javax.swing.JFrame {
         loginJLabel = new javax.swing.JLabel();
         logoutJButton = new javax.swing.JButton();
         timelable = new javax.swing.JLabel();
-        container = new javax.swing.JPanel();
+        RoleLable = new javax.swing.JLabel();
+        OrganizationLable = new javax.swing.JLabel();
+        organizationlable = new javax.swing.JLabel();
+        container = new javax.swing.JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon img = new ImageIcon("main6.jpg");
+                img.paintIcon(this, g, 0, 0);
+            }
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -208,10 +282,16 @@ public class MainJFrame extends javax.swing.JFrame {
                 loginJButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(loginJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 155, 110, -1));
+        jPanel1.add(userNameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 49, 118, -1));
+        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 111, 118, -1));
 
         jLabel1.setText("User Name");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 21, -1, -1));
 
         jLabel2.setText("Password");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 89, -1, -1));
+        jPanel1.add(loginJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 253, -1, -1));
 
         logoutJButton.setText("Logout");
         logoutJButton.setEnabled(false);
@@ -220,53 +300,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 logoutJButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(logoutJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 100, -1));
 
+        timelable.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         timelable.setText("time");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(logoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(timelable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGap(26, 26, 26)
-                            .addComponent(loginJLabel)))
-                    .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(loginJButton)
-                .addGap(34, 34, 34)
-                .addComponent(logoutJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addComponent(timelable)
-                .addGap(16, 16, 16))
-        );
+        jPanel1.add(timelable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 120, -1));
+        jPanel1.add(RoleLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 80, -1));
+        jPanel1.add(OrganizationLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 50, -1));
+        jPanel1.add(organizationlable, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
         jSplitPane1.setLeftComponent(jPanel1);
 
@@ -330,8 +371,13 @@ public class MainJFrame extends javax.swing.JFrame {
             CardLayout layout = (CardLayout) container.getLayout();
             JPanel panel = userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system);
             container.add("workArea", panel);
-            
+
             layout.next(container);
+            if(!userAccount.getUsername().equals("sysadmin")){
+                RoleLable.setText(userAccount.getEmployee().getHardRole());
+                organizationlable.setText(userAccount.getEmployee().getHardOrg());
+            }
+            
         }
 
         loginJButton.setEnabled(false);
@@ -348,9 +394,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         userNameJTextField.setText("");
         passwordField.setText("");
+        
+        RoleLable.setText("");
+        organizationlable.setText("");
 
         container.removeAll();
         JPanel blankJP = new JPanel();
+        blankJP.setOpaque(false);
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
@@ -393,6 +443,8 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel OrganizationLable;
+    private javax.swing.JLabel RoleLable;
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -401,6 +453,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton loginJButton;
     private javax.swing.JLabel loginJLabel;
     private javax.swing.JButton logoutJButton;
+    private javax.swing.JLabel organizationlable;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel timelable;
     private javax.swing.JTextField userNameJTextField;

@@ -17,10 +17,12 @@ import java.util.ArrayList;
 public class Salesman extends Employee {
      private SalesOrderDirectory salesOrderDictory;
     private CustomerDirectory customerDirectory;
+    private int turnover;
     public Salesman(String name){
         super(name, 4);
         this.salesOrderDictory = new SalesOrderDirectory();
         this.customerDirectory = new CustomerDirectory();
+        this.turnover = 0;
     }
 
     public CustomerDirectory getCustomerDirectory() {
@@ -30,6 +32,15 @@ public class Salesman extends Employee {
     public void setCustomerDirectory(CustomerDirectory customerDirectory) {
         this.customerDirectory = customerDirectory;
     }
+
+    public int getTurnover() {
+        return turnover;
+    }
+
+    public void setTurnover(int turnover) {
+        this.turnover = turnover;
+    }
+    
 
     public SalesOrderDirectory getSalesOrderDictory() {
         return salesOrderDictory;

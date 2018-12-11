@@ -33,6 +33,7 @@ public class WorkLinesDetailsPanel extends javax.swing.JPanel {
         this.manufactureEnterprise = manufactureEnterprise;
 
         populatetables();
+        this.setOpaque(false);
     }
 
     public void populatetables() {
@@ -89,6 +90,7 @@ public class WorkLinesDetailsPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -119,16 +121,19 @@ public class WorkLinesDetailsPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable2);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 280, 70));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 410, 100));
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Line 3");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel2.setText("Line 1");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel3.setText("Line 2");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, -1));
 
         jTable0.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,7 +163,7 @@ public class WorkLinesDetailsPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable0);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 280, 70));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 410, 100));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,24 +193,28 @@ public class WorkLinesDetailsPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(jTable1);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 280, 70));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 410, 100));
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jButton1.setText("<<Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel4.setText("Vacant place: xx");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, 30));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, 30));
 
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel5.setText("Vacant place: xx");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, 30));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, 30));
 
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel6.setText("Vacant place: xx");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

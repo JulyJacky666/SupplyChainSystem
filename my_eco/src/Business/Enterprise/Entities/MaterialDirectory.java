@@ -33,6 +33,12 @@ public class MaterialDirectory {
     }
     
 
+    public Material addMaterial() {
+        Material p = new Material();
+        materials.add(p);
+        return p;
+    }
+    
     public void addall() {
         Material handlebars = new Material("Handlebars", new HashMap<Material, Integer>());
 //        materials.add(handlebars);
